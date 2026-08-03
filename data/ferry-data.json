@@ -343,8 +343,8 @@
       ]
     },
     {
-      "id": "midtown-west-w-39th-st-pier-79",
-      "name": "Midtown West/W 39th St-Pier 79",
+      "id": "midtown-west-39th-st-pier-79",
+      "name": "Midtown West 39th St-Pier 79",
       "lat": 40.760323,
       "lng": -74.004075,
       "routes": [
@@ -2578,7 +2578,7 @@
     ],
     "battery-park-city-vesey-st": [
       {
-        "to": "midtown-west-w-39th-st-pier-79",
+        "to": "midtown-west-39th-st-pier-79",
         "route": "SG"
       },
       {
@@ -2596,7 +2596,7 @@
         "route": "SG"
       }
     ],
-    "midtown-west-w-39th-st-pier-79": [
+    "midtown-west-39th-st-pier-79": [
       {
         "to": "battery-park-city-vesey-st",
         "route": "SG"
@@ -2640,7 +2640,7 @@
       "ferry-point-park"
     ],
     "SG": [
-      "midtown-west-w-39th-st-pier-79",
+      "midtown-west-39th-st-pier-79",
       "battery-park-city-vesey-st",
       "st-george",
       "bay-ridge",
@@ -12958,7 +12958,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "06:22:00",
           "dep": "06:22:00"
         },
@@ -12995,7 +12995,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "06:54:00",
           "dep": "06:54:00"
         },
@@ -13032,7 +13032,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "07:30:00",
           "dep": "07:30:00"
         },
@@ -13069,7 +13069,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "08:14:00",
           "dep": "08:14:00"
         },
@@ -13106,7 +13106,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "08:51:00",
           "dep": "08:51:00"
         },
@@ -13143,7 +13143,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "09:23:00",
           "dep": "09:23:00"
         },
@@ -13180,7 +13180,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "10:13:00",
           "dep": "10:13:00"
         },
@@ -13217,7 +13217,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:20:00",
           "dep": "11:20:00"
         },
@@ -13254,7 +13254,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "12:10:00",
           "dep": "12:10:00"
         },
@@ -13291,7 +13291,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:00:00",
           "dep": "13:00:00"
         },
@@ -13328,7 +13328,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:50:00",
           "dep": "13:50:00"
         },
@@ -13365,7 +13365,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:40:00",
           "dep": "14:40:00"
         },
@@ -13402,7 +13402,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "15:30:00",
           "dep": "15:30:00"
         },
@@ -13439,7 +13439,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:20:00",
           "dep": "16:20:00"
         },
@@ -13476,7 +13476,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:54:00",
           "dep": "16:54:00"
         },
@@ -13513,7 +13513,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:31:00",
           "dep": "17:31:00"
         },
@@ -13550,7 +13550,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "18:04:00",
           "dep": "18:04:00"
         },
@@ -13587,7 +13587,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "18:49:00",
           "dep": "18:49:00"
         },
@@ -13624,7 +13624,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:26:00",
           "dep": "19:26:00"
         },
@@ -13661,7 +13661,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:12:00",
           "dep": "20:12:00"
         },
@@ -13698,7 +13698,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "21:00:00",
           "dep": "21:00:00"
         },
@@ -13745,7 +13745,7 @@
           "dep": "06:36:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "06:48:00",
           "dep": "06:48:00"
         }
@@ -13782,7 +13782,7 @@
           "dep": "07:12:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "07:24:00",
           "dep": "07:24:00"
         }
@@ -13819,7 +13819,7 @@
           "dep": "07:56:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "08:08:00",
           "dep": "08:08:00"
         }
@@ -13856,7 +13856,7 @@
           "dep": "08:33:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "08:45:00",
           "dep": "08:45:00"
         }
@@ -13893,7 +13893,7 @@
           "dep": "09:05:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "09:17:00",
           "dep": "09:17:00"
         }
@@ -13930,7 +13930,7 @@
           "dep": "09:41:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "09:53:00",
           "dep": "09:53:00"
         }
@@ -13967,7 +13967,7 @@
           "dep": "10:25:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "10:37:00",
           "dep": "10:37:00"
         }
@@ -14004,7 +14004,7 @@
           "dep": "11:02:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:14:00",
           "dep": "11:14:00"
         }
@@ -14041,7 +14041,7 @@
           "dep": "11:34:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:46:00",
           "dep": "11:46:00"
         }
@@ -14078,7 +14078,7 @@
           "dep": "12:24:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "12:36:00",
           "dep": "12:36:00"
         }
@@ -14115,7 +14115,7 @@
           "dep": "13:31:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:43:00",
           "dep": "13:43:00"
         }
@@ -14152,7 +14152,7 @@
           "dep": "14:21:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:33:00",
           "dep": "14:33:00"
         }
@@ -14189,7 +14189,7 @@
           "dep": "15:11:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "15:23:00",
           "dep": "15:23:00"
         }
@@ -14226,7 +14226,7 @@
           "dep": "16:01:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:13:00",
           "dep": "16:13:00"
         }
@@ -14263,7 +14263,7 @@
           "dep": "16:51:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:03:00",
           "dep": "17:03:00"
         }
@@ -14300,7 +14300,7 @@
           "dep": "17:41:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:53:00",
           "dep": "17:53:00"
         }
@@ -14337,7 +14337,7 @@
           "dep": "18:31:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "18:43:00",
           "dep": "18:43:00"
         }
@@ -14374,7 +14374,7 @@
           "dep": "19:05:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:17:00",
           "dep": "19:17:00"
         }
@@ -14411,7 +14411,7 @@
           "dep": "19:50:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:02:00",
           "dep": "20:02:00"
         }
@@ -14448,7 +14448,7 @@
           "dep": "20:15:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:27:00",
           "dep": "20:27:00"
         }
@@ -14485,7 +14485,7 @@
           "dep": "21:00:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "21:12:00",
           "dep": "21:12:00"
         }
@@ -14522,7 +14522,7 @@
           "dep": "21:37:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "21:49:00",
           "dep": "21:49:00"
         }
@@ -14534,7 +14534,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "09:04:00",
           "dep": "09:04:00"
         },
@@ -14571,7 +14571,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "09:55:00",
           "dep": "09:55:00"
         },
@@ -14608,7 +14608,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "10:33:00",
           "dep": "10:33:00"
         },
@@ -14645,7 +14645,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:04:00",
           "dep": "11:04:00"
         },
@@ -14682,7 +14682,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:36:00",
           "dep": "11:36:00"
         },
@@ -14719,7 +14719,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "12:27:00",
           "dep": "12:27:00"
         },
@@ -14756,7 +14756,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:05:00",
           "dep": "13:05:00"
         },
@@ -14793,7 +14793,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:43:00",
           "dep": "13:43:00"
         },
@@ -14830,7 +14830,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:21:00",
           "dep": "14:21:00"
         },
@@ -14867,7 +14867,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:59:00",
           "dep": "14:59:00"
         },
@@ -14904,7 +14904,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "15:49:00",
           "dep": "15:49:00"
         },
@@ -14941,7 +14941,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:39:00",
           "dep": "16:39:00"
         },
@@ -14978,7 +14978,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:17:00",
           "dep": "17:17:00"
         },
@@ -15015,7 +15015,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:55:00",
           "dep": "17:55:00"
         },
@@ -15052,7 +15052,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "18:33:00",
           "dep": "18:33:00"
         },
@@ -15089,7 +15089,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:11:00",
           "dep": "19:11:00"
         },
@@ -15126,7 +15126,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:49:00",
           "dep": "19:49:00"
         },
@@ -15163,7 +15163,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:27:00",
           "dep": "20:27:00"
         },
@@ -15200,7 +15200,7 @@
       "r": "SG",
       "stops": [
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "21:05:00",
           "dep": "21:05:00"
         },
@@ -15262,7 +15262,7 @@
           "dep": "10:15:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "10:27:00",
           "dep": "10:27:00"
         }
@@ -15299,7 +15299,7 @@
           "dep": "11:18:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "11:30:00",
           "dep": "11:30:00"
         }
@@ -15336,7 +15336,7 @@
           "dep": "12:09:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "12:21:00",
           "dep": "12:21:00"
         }
@@ -15373,7 +15373,7 @@
           "dep": "12:47:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "12:59:00",
           "dep": "12:59:00"
         }
@@ -15410,7 +15410,7 @@
           "dep": "13:18:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "13:30:00",
           "dep": "13:30:00"
         }
@@ -15447,7 +15447,7 @@
           "dep": "13:50:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:02:00",
           "dep": "14:02:00"
         }
@@ -15484,7 +15484,7 @@
           "dep": "14:41:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "14:53:00",
           "dep": "14:53:00"
         }
@@ -15521,7 +15521,7 @@
           "dep": "15:19:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "15:31:00",
           "dep": "15:31:00"
         }
@@ -15558,7 +15558,7 @@
           "dep": "15:57:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:09:00",
           "dep": "16:09:00"
         }
@@ -15595,7 +15595,7 @@
           "dep": "16:35:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "16:47:00",
           "dep": "16:47:00"
         }
@@ -15632,7 +15632,7 @@
           "dep": "17:13:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "17:25:00",
           "dep": "17:25:00"
         }
@@ -15669,7 +15669,7 @@
           "dep": "18:03:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "18:15:00",
           "dep": "18:15:00"
         }
@@ -15706,7 +15706,7 @@
           "dep": "18:53:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:05:00",
           "dep": "19:05:00"
         }
@@ -15743,7 +15743,7 @@
           "dep": "19:31:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "19:43:00",
           "dep": "19:43:00"
         }
@@ -15780,7 +15780,7 @@
           "dep": "20:09:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:21:00",
           "dep": "20:21:00"
         }
@@ -15817,7 +15817,7 @@
           "dep": "20:47:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "20:59:00",
           "dep": "20:59:00"
         }
@@ -15854,7 +15854,7 @@
           "dep": "21:25:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "21:37:00",
           "dep": "21:37:00"
         }
@@ -15891,7 +15891,7 @@
           "dep": "22:03:00"
         },
         {
-          "id": "midtown-west-w-39th-st-pier-79",
+          "id": "midtown-west-39th-st-pier-79",
           "arr": "22:15:00",
           "dep": "22:15:00"
         }
