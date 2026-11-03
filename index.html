@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="79">
+<meta name="app-build" content="80">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -55,10 +55,14 @@
       window.FM_CONFIG = { debug, build };
       const q = debug ? ('ts=' + Date.now()) : ('v=' + encodeURIComponent(build));
 
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'css/styles.css?' + q;
-      document.head.appendChild(css);
+      // Load each stylesheet with the release version; @import URLs otherwise
+      // keep stale cached themes even when styles.css has a new version.
+      for (const name of ['base', 'theme', 'layout', 'map', 'components']) {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'css/' + name + '.css?' + q;
+        document.head.appendChild(css);
+      }
       
       // Add Google Maps style location dot CSS
       const locationStyle = document.createElement('style');
@@ -172,7 +176,7 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">79</code>
+      Build: <code id="build-number">80</code>
     </div>
   </div>
 </header>
