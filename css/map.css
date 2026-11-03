@@ -1,8 +1,12 @@
 /* === Map: Leaflet overrides, map container, overlays, route markers === */
 
 /* --- Leaflet overrides --- */
-.leaflet-control-attribution { font-size: 10px; opacity: 0.5; }
+.leaflet-control-attribution { font-size: 10px; opacity: 1; }
 .leaflet-control-attribution:hover { opacity: 1; }
+
+/* Apply themes only to basemap tiles; ferry lines and markers keep their colors. */
+.map-tiles-light { filter: grayscale(1) brightness(1.08); }
+.map-tiles-dark { filter: grayscale(1) invert(1) brightness(0.85); }
 
 /* --- Map container --- */
 #map-overlay.open {

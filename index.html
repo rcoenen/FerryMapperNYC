@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="78">
+<meta name="app-build" content="79">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -110,6 +110,22 @@
       `;
       document.head.appendChild(locationStyle);
 
+      // Version the whole module graph, so cached imports cannot mix releases.
+      const moduleNames = [
+        'config', 'data', 'datetime-input', 'directions', 'dom', 'errors',
+        'map-core', 'modals', 'route-drawing', 'routing', 'settings', 'sheet',
+        'state', 'time-utils'
+      ];
+      const imports = {};
+      for (const name of moduleNames) {
+        const url = new URL('js/' + name + '.js', document.baseURI).href;
+        imports[url] = url + '?' + q;
+      }
+      const importMap = document.createElement('script');
+      importMap.type = 'importmap';
+      importMap.textContent = JSON.stringify({ imports });
+      document.head.appendChild(importMap);
+
       const js = document.createElement('script');
       js.type = 'module';
       js.src = 'app.js?' + q;
@@ -156,7 +172,7 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">78</code>
+      Build: <code id="build-number">79</code>
     </div>
   </div>
 </header>

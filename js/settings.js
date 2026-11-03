@@ -1,7 +1,7 @@
 // Settings drawer, map style switching, time format, geolocation
 
 import { state, subscribeState, TIME_FMT_KEY, STYLE_STORAGE_KEY, LOC_STORAGE_KEY, TRANSFER_TIME_KEY, setMapStyle, setGeolocation, clearGeolocation, setTransferTime } from './state.js';
-import { map, MAP_STYLES } from './map-core.js';
+import { map, MAP_STYLES, createTileLayer } from './map-core.js';
 import { applyDateTimeInputMode, syncLocaleFormatClass, syncDateTimeButton, refreshModalDisplay } from './datetime-input.js';
 import { openTransferModal } from './modals.js';
 
@@ -132,7 +132,7 @@ export function initSettings({ onTimeFormatChange }) {
     const s = MAP_STYLES[key];
     if (!s) return;
     map.removeLayer(state.currentTileLayer);
-    state.currentTileLayer = L.tileLayer(s.url, { attribution: s.attribution, maxZoom: s.maxZoom }).addTo(map);
+    state.currentTileLayer = createTileLayer(key).addTo(map);
     state.currentTileLayer.bringToBack();
     setMapStyle(key);
     try { localStorage.setItem(STYLE_STORAGE_KEY, key); } catch {}

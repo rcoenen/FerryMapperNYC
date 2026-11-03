@@ -5,23 +5,24 @@ import { state, STYLE_STORAGE_KEY } from './state.js';
 import { CONFIG } from './config.js';
 
 export const DEFAULT_VIEW = { lat: 40.6989, lng: -73.9922, zoom: 13 };
-export const MAP_STYLES = {
-  positron: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 20
-  },
-  darkMatter: {
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 20
-  },
-  osm: {
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    attribution: '&copy; OpenStreetMap contributors',
-    maxZoom: 18
-  }
+// Standard OSM tiles need no account or API key. Keep the existing style IDs
+// so saved Light/Dark preferences also move off CARTO's keyed endpoints.
+const OSM_TILES = {
+  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxNativeZoom: 19,
+  maxZoom: 20,
 };
+export const MAP_STYLES = {
+  positron: { ...OSM_TILES, className: 'map-tiles-light' },
+  darkMatter: { ...OSM_TILES, className: 'map-tiles-dark' },
+  osm: { ...OSM_TILES },
+};
+
+export function createTileLayer(styleKey) {
+  const { url, ...options } = MAP_STYLES[styleKey];
+  return L.tileLayer(url, options);
+}
 
 export const LANDING_SIZE = 8;
 export let map;
@@ -66,10 +67,7 @@ export function initMap() {
   if (!MAP_STYLES[state.activeStyleKey]) state.activeStyleKey = 'positron';
 
   map = L.map('map', { minZoom: 11 }).setView([DEFAULT_VIEW.lat, DEFAULT_VIEW.lng], DEFAULT_VIEW.zoom);
-  state.currentTileLayer = L.tileLayer(MAP_STYLES[state.activeStyleKey].url, {
-    attribution: MAP_STYLES[state.activeStyleKey].attribution,
-    maxZoom: MAP_STYLES[state.activeStyleKey].maxZoom
-  }).addTo(map);
+  state.currentTileLayer = createTileLayer(state.activeStyleKey).addTo(map);
 
   // Custom pane for route lines — below overlayPane (400) so stop markers always appear on top
   map.createPane('routeLines');
