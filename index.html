@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="77">
+<meta name="app-build" content="78">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -156,7 +156,7 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">77</code>
+      Build: <code id="build-number">78</code>
     </div>
   </div>
 </header>
@@ -191,13 +191,13 @@
       No React. No build step. No server. Just vanilla ES modules that do everything in the browser.
     </p>
     <p>
-      <strong>Routing</strong> went through several iterations. We started with <strong><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank">Dijkstra</a></strong>, but for a graph of ~39 stops where transfers matter more than distance, it was overkill. We landed on <strong><a href="https://cp-algorithms.com/graph/01_bfs.html" target="_blank">0-1 BFS</a></strong> &mdash; riding the same line costs 0, transferring costs 1. Fewest transfers first, then shortest path. Solves in under a millisecond.
+      <strong>Routing</strong> searches actual ferry departures and connections across the timetable. Depart-at searches find the earliest arrival; arrive-by searches find the latest departure that meets your deadline. When departure and arrival times match, fewer transfers win. Transfer buffers apply when changing ferries, and the map and directions use the stops served by your selected trip.
     </p>
     <p>
       <strong>Map lines</strong> needed smoothing so routes follow the waterway instead of zigzagging between GPS points. We tried <strong><a href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline" target="_blank">Catmull-Rom splines</a></strong>, <strong><a href="https://en.wikipedia.org/wiki/B-spline" target="_blank">cubic B-splines</a></strong>, and simple moving-average filters before settling on <strong><a href="https://smarx.com/posts/2020/08/chaikin-curves-a-beautifully-simple-algorithm/" target="_blank">Chaikin corner-cutting</a></strong> &mdash; it gave the cleanest curves without overshooting tight harbor bends.
     </p>
     <p>
-      <strong>Three options</strong> (Earlier / Best / Later) come from re-running the search with shifted departure times. Navigate far enough and you're browsing the full timetable.
+      <strong>Three options</strong> (Earlier / Best / Later) come from exact scheduled departures across the selected date. Trips overtaken by later ferries are removed, and navigation follows the remaining journeys without sampling times.
     </p>
     <p>
       <strong>Data</strong> is pulled from NYC Ferry's public <strong><a href="https://en.wikipedia.org/wiki/GTFS" target="_blank">GTFS</a></strong> feed and baked into a single JSON file. No API keys, no rate limits, no surprises.

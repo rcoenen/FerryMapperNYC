@@ -3,8 +3,8 @@
 
 import { loadData, sorted, stopById } from './js/data.js';
 import { state, saveState, loadState, TIME_FMT_KEY, setSearchResult, setLastSearch, clearSearch, shiftRoute, setActiveRouteIdx, subscribeState, setTransferTime } from './js/state.js';
-import { timeToMin } from './js/time-utils.js';
-import { findRoutes, expandLegStops, findOptions, isComplete } from './js/routing.js';
+import { timeToMin, getNYCDateTime } from './js/time-utils.js';
+import { findOptions, isComplete } from './js/routing.js';
 import { initMap, map, updatePreviewMarkers } from './js/map-core.js';
 import { showRoute, clearHighlights } from './js/route-drawing.js';
 import { showDirections, setDirections } from './js/directions.js';
@@ -60,9 +60,9 @@ syncLocaleFormatClass();
 
 // Hydrate from saved state or default to now
 const saved = loadState();
-const now = new Date();
-const todayStr = now.toISOString().slice(0, 10);
-const nowTime = now.toTimeString().slice(0, 5);
+const now = getNYCDateTime();
+const todayStr = now.date;
+const nowTime = now.time;
 
 if (saved) {
   const timeMode = getEl('time-mode');
@@ -82,7 +82,7 @@ syncDateTimeButton();
 // Date modal buttons
 getEl('date-modal-today').addEventListener('click', () => {
   restoreNativeInputs();
-  dateInput.value = new Date().toISOString().slice(0, 10);
+  dateInput.value = getNYCDateTime().date;
   dateInput.dataset.raw = dateInput.value;
   syncDateTimeButton();
   checkPastTime();
@@ -91,9 +91,9 @@ getEl('date-modal-today').addEventListener('click', () => {
 });
 getEl('date-modal-now').addEventListener('click', () => {
   restoreNativeInputs();
-  const n = new Date();
-  dateInput.value = n.toISOString().slice(0, 10);
-  timeInput.value = n.toTimeString().slice(0, 5);
+  const n = getNYCDateTime();
+  dateInput.value = n.date;
+  timeInput.value = n.time;
   dateInput.dataset.raw = dateInput.value;
   timeInput.dataset.raw = timeInput.value;
   syncDateTimeButton();
@@ -320,31 +320,6 @@ goBtn.addEventListener('click', () => {
       return;
     }
 
-    const allLegs = findRoutes(fromId, toId);
-    if (!allLegs || allLegs.length === 0) {
-      clearHighlights();
-      setDirections('<div class="error-msg">No route found between these stops.</div>');
-      return;
-    }
-
-    // Expand intermediate stops for all candidate topologies
-    for (const legs of allLegs) {
-      legs.forEach(leg => {
-        const full = [];
-        for (let i = 0; i < leg.stops.length - 1; i++) {
-          const seg = expandLegStops(leg.stops[i], leg.stops[i + 1], leg.route);
-          if (seg) {
-            if (i === 0) full.push(...seg);
-            else full.push(...seg.slice(1));
-          } else {
-            if (i === 0) full.push(leg.stops[i]);
-            full.push(leg.stops[i + 1]);
-          }
-        }
-        if (full.length > leg.stops.length) leg.stops = full;
-      });
-    }
-
     const dateStr = normalizeDateInput({ commit: true });
     const timeStr = normalizeTimeInput({ commit: true });
     if (!dateStr || !timeStr) {
@@ -352,9 +327,9 @@ goBtn.addEventListener('click', () => {
       return;
     }
     const startMin = timeToMin(timeStr + ':00');
-    const options = findOptions(allLegs, dateStr, startMin, mode);
+    const options = findOptions(fromId, toId, dateStr, startMin, mode);
 
-    setLastSearch({ allLegs, dateStr, startMin, mode, fromId, toId });
+    setLastSearch({ dateStr, startMin, mode, fromId, toId });
 
     const activeIdx = 1;
     if (options[activeIdx] && isComplete(options[activeIdx])) {

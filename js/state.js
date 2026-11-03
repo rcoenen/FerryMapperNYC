@@ -11,7 +11,6 @@ import { CONFIG } from './config.js';
 
 /**
  * @typedef {Object} SearchState
- * @property {any} allLegs - All route topologies
  * @property {string} dateStr - Date string
  * @property {number} startMin - Start time in minutes
  * @property {string} mode - 'depart' or 'arrive'

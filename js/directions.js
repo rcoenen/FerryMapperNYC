@@ -92,19 +92,19 @@ function buildTabHtml(option, label) {
   const total = getTotalTime(option);
   const maxWait = getMaxWait(option);
   const transferClass = maxWait > 20 ? ' tab-transfer-long' : '';
-  const waitInfo = maxWait > 0 ? `<div class="tab-transfer${transferClass}">${maxWait} min transfer</div>` : '';
+  const waitInfo = maxWait > 0 ? `<div class="tab-transfer${transferClass}">${formatDuration(maxWait)} transfer</div>` : '';
   return `${labelHtml}<div class="tab-time">${formatTime(dep)}</div><div class="tab-dur">${formatDuration(total)}</div>${waitInfo}`;
 }
 
 export function shiftOptions(direction) {
   if (!state.lastSearch) return;
-  const { allLegs, dateStr, mode, fromId, toId } = state.lastSearch;
+  const { dateStr, mode, fromId, toId } = state.lastSearch;
   const ref = direction === -1 ? state.currentOptions[0] : state.currentOptions[2];
   if (!ref || !isComplete(ref)) return;
   const refTime = mode === 'arrive' ? getArrival(ref) : getDeparture(ref);
   const newStartMin = refTime;
   state.lastSearch.startMin = newStartMin;
-  const options = findOptions(allLegs, dateStr, newStartMin, mode);
+  const options = findOptions(fromId, toId, dateStr, newStartMin, mode);
   const activeIdx = 1;
   shiftRoute(direction);
   if (options[activeIdx] && isComplete(options[activeIdx])) {
@@ -136,7 +136,8 @@ export function showDirections(options, fromId, toId, activeIdx) {
   setSearchResult(options, activeIdx);
 
   if (!options[0] && !options[1] && !options[2]) {
-    setDirections('<div class="error-msg">No route found between these stops.</div>');
+    clearHighlights();
+    setDirections('<div class="error-msg">No trips available between these stops for this date.</div>');
     return;
   }
 
@@ -148,12 +149,17 @@ export function showDirections(options, fromId, toId, activeIdx) {
     }
   }
 
+  setActiveRouteIdx(activeIdx);
   let html = '';
+  if (!isComplete(options[1])) {
+    const search = state.lastSearch;
+    const message = search?.mode === 'arrive'
+      ? `No trip arrives by ${formatTime(search.startMin)}. A later trip is shown below.`
+      : `No trip departs at or after ${formatTime(search?.startMin ?? 0)} on this date. An earlier trip is shown below.`;
+    html += `<div class="error-msg" role="status">${message}</div>`;
+  }
 
-  const labels = [0, 1, 2].map(k => {
-    const orig = k + state.shiftCount;
-    return (orig >= 0 && orig < 3) ? BASE_LABELS[orig] : '';
-  });
+  const labels = BASE_LABELS;
   const canGoEarlier = options[0] && isComplete(options[0]);
   const canGoLater = options[2] && isComplete(options[2]);
 

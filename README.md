@@ -13,7 +13,7 @@ A lightweight, no-framework trip planner for the NYC Ferry system. Plan routes a
 
 - **Route planning** across 39 ferry stops and 7 active routes
 - **Schedule-aware** — uses real GTFS departure/arrival times
-- **Transfer optimization** — 10-minute minimum transfer time, finds fastest connections
+- **Transfer optimization** — configurable minimum transfer time (5 minutes by default), finds fastest connections
 - **3 trip options** with Earlier/Requested/Later tabs and navigation
 - **Depart at / Arrive by** mode
 - **Interactive map** with route highlighting, stop popups, and clickable A/B markers
@@ -27,8 +27,8 @@ A lightweight, no-framework trip planner for the NYC Ferry system. Plan routes a
 ## How it works
 
 1. **Data pipeline** (`prepare-data.mjs`) downloads the NYC Ferry GTFS feed, parses stop/route/schedule data, deduplicates stops, and builds a routing graph
-2. **Client-side routing** uses 0-1 BFS to find optimal paths minimizing transfers first, then stops
-3. **Schedule resolution** maps abstract routes onto real trip times, checking all serving routes per leg
+2. **Timetable routing** searches every scheduled departure on the selected date, keeping alternative connections with different arrival times and transfer counts. It finds the earliest arrival for “depart at” and the latest departure for “arrive by,” preferring fewer transfers when departure and arrival times tie.
+3. **Trip options** show earlier/best/later journeys, removing trips overtaken by later departures. Stop lists come from the actual trip; calendar exceptions, after-midnight service, and transfer buffers between ferries are respected. Overnight arrivals are labeled with their day offset. If no trip meets the requested time, the app says so explicitly.
 
 ## Getting started
 
@@ -36,6 +36,13 @@ A lightweight, no-framework trip planner for the NYC Ferry system. Plan routes a
 npm install
 npm run prepare-data   # downloads GTFS feed → data/ferry-data.json
 npm start              # serves on localhost
+```
+
+## Validation
+
+```bash
+npm test              # routing regressions and real-feed comparisons
+npm run lint          # syntax checks for all application modules
 ```
 
 ## Tech stack
