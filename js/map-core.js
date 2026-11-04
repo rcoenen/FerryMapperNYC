@@ -5,23 +5,63 @@ import { state, STYLE_STORAGE_KEY } from './state.js';
 import { CONFIG } from './config.js';
 
 export const DEFAULT_VIEW = { lat: 40.6989, lng: -73.9922, zoom: 13 };
-// Standard OSM tiles need no account or API key. Keep the existing style IDs
-// so saved Light/Dark preferences also move off CARTO's keyed endpoints.
 const OSM_TILES = {
   url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   maxNativeZoom: 19,
   maxZoom: 20,
 };
+const VECTOR_ATTRIBUTION = '<a href="https://openfreemap.org/">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+// Keep existing preference IDs while using genuinely simplified vector styles.
 export const MAP_STYLES = {
-  positron: { ...OSM_TILES, className: 'map-tiles-light' },
-  darkMatter: { ...OSM_TILES, className: 'map-tiles-dark' },
-  osm: { ...OSM_TILES },
+  positron: { style: 'https://tiles.openfreemap.org/styles/positron' },
+  darkMatter: { style: 'https://tiles.openfreemap.org/styles/dark' },
+  osm: OSM_TILES,
 };
 
+function simplifyBasemap(gl, styleKey) {
+  // Retain coastlines, parks, major roads, water names, and neighborhood labels.
+  // Buildings, rail tracks, shields, and street names compete with ferry routes.
+  const hiddenSources = new Set(['building', 'poi', 'housenumber', 'transportation_name', 'aerodrome_label']);
+  if (gl.getLayer('water')) {
+    gl.setPaintProperty('water', 'fill-color', styleKey === 'darkMatter' ? '#182631' : '#dfedf3');
+  }
+  for (const layer of gl.getStyle().layers) {
+    if (hiddenSources.has(layer['source-layer']) ||
+        /^(railway|aeroway|highway_path|highway_minor|boundary_3)/.test(layer.id)) {
+      gl.setLayoutProperty(layer.id, 'visibility', 'none');
+    }
+  }
+}
+
+let vectorSupported;
+function supportsVectorMap() {
+  if (vectorSupported === undefined) {
+    const context = document.createElement('canvas').getContext('webgl2');
+    vectorSupported = !!context;
+    context?.getExtension('WEBGL_lose_context')?.loseContext();
+  }
+  return vectorSupported;
+}
+
 export function createTileLayer(styleKey) {
-  const { url, ...options } = MAP_STYLES[styleKey];
-  return L.tileLayer(url, options);
+  const style = MAP_STYLES[styleKey];
+  // Classic is also a usable fallback on devices without WebGL support.
+  if (!style.style || !window.maplibregl || !L.maplibreGL || !supportsVectorMap()) {
+    const { url, ...options } = OSM_TILES;
+    return L.tileLayer(url, options);
+  }
+  const layer = L.maplibreGL({
+    style: style.style,
+    attributionControl: { customAttribution: VECTOR_ATTRIBUTION },
+    interactive: false,
+  });
+  layer.once('add', () => {
+    const gl = layer.getMaplibreMap();
+    gl.on('style.load', () => simplifyBasemap(gl, styleKey));
+  });
+  return layer;
 }
 
 export const LANDING_SIZE = 8;
@@ -66,7 +106,7 @@ export function initMap() {
   try { state.activeStyleKey = localStorage.getItem(STYLE_STORAGE_KEY) || 'positron'; } catch {}
   if (!MAP_STYLES[state.activeStyleKey]) state.activeStyleKey = 'positron';
 
-  map = L.map('map', { minZoom: 11 }).setView([DEFAULT_VIEW.lat, DEFAULT_VIEW.lng], DEFAULT_VIEW.zoom);
+  map = L.map('map', { minZoom: 11, maxZoom: 20 }).setView([DEFAULT_VIEW.lat, DEFAULT_VIEW.lng], DEFAULT_VIEW.zoom);
   state.currentTileLayer = createTileLayer(state.activeStyleKey).addTo(map);
 
   // Custom pane for route lines — below overlayPane (400) so stop markers always appear on top
@@ -107,10 +147,10 @@ export function initMap() {
         }
       }
       routeOutlines[r.id] = L.polyline(shape, {
-        color: '#fff', weight: 5, opacity: 0.35, interactive: false, pane: 'routeLines'
+        color: '#fff', weight: 5, opacity: 0.6, interactive: false, pane: 'routeLines'
       }).addTo(map);
       routePolylines[r.id] = L.polyline(shape, {
-        color: r.color, weight: 3, opacity: 0.35, interactive: false, pane: 'routeLines'
+        color: r.color, weight: 3, opacity: 0.65, interactive: false, pane: 'routeLines'
       }).addTo(map);
     }
   });

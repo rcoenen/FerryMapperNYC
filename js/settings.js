@@ -133,7 +133,7 @@ export function initSettings({ onTimeFormatChange }) {
     if (!s) return;
     map.removeLayer(state.currentTileLayer);
     state.currentTileLayer = createTileLayer(key).addTo(map);
-    state.currentTileLayer.bringToBack();
+    state.currentTileLayer.bringToBack?.();
     setMapStyle(key);
     try { localStorage.setItem(STYLE_STORAGE_KEY, key); } catch {}
   });

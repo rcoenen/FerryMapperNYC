@@ -48,7 +48,8 @@ npm run lint          # syntax checks for all application modules
 ## Tech stack
 
 - Single `index.html` — no build tools, no frameworks
-- [Leaflet](https://leafletjs.com/) + OpenStreetMap tiles
+- [Leaflet](https://leafletjs.com/) ferry overlays + [MapLibre](https://maplibre.org/) / [OpenFreeMap](https://openfreemap.org/) simplified vector basemaps (no API key)
+- Light and Dark maps hide buildings, minor roads, and street labels; Classic uses standard OpenStreetMap tiles and also serves as the fallback on devices without WebGL
 - Node.js script for GTFS data preparation
 - GTFS source: [NYC Ferry Connexionz feed](https://nycferry.connexionz.net/rtt/public/utility/gtfs.aspx)
 
