@@ -1,16 +1,20 @@
-// Route highlight rendering: polylines, chevrons, smoothing
+// Route highlight rendering using the same lanes as the network map
 
 import { stopById, routeById } from './data.js';
 import { state } from './state.js';
-import { map, stopMarkers, routeOutlines, routePolylines, LANDING_SIZE, makePillIcon } from './map-core.js';
+import { map, stopMarkers, routeOutlines, routePolylines, BASE_ROUTE_STYLE, BASE_OUTLINE_STYLE, stopRadius, getRouteShape, makePillIcon, isLightColor } from './map-core.js';
 import { isMobile } from './sheet.js';
 
+let displayedLegs = null;
+let geometryListenerAttached = false;
+
 export function clearHighlights() {
+  displayedLegs = null;
   state.highlightLayers.forEach(l => map.removeLayer(l));
   state.highlightLayers = [];
-  for (const rid in routeOutlines) routeOutlines[rid].setStyle({ weight: 5, opacity: 0.35 });
-  for (const rid in routePolylines) routePolylines[rid].setStyle({ weight: 3, opacity: 0.35 });
-  for (const sid in stopMarkers) stopMarkers[sid].setStyle({ radius: LANDING_SIZE, color: '#333', weight: 1.5, fillColor: '#fff' });
+  for (const rid in routeOutlines) routeOutlines[rid].setStyle(BASE_OUTLINE_STYLE);
+  for (const rid in routePolylines) routePolylines[rid].setStyle(BASE_ROUTE_STYLE);
+  for (const sid in stopMarkers) stopMarkers[sid].setStyle({ radius: stopRadius(sid), color: '#425466', weight: 2, fillColor: '#fff' });
 }
 
 function addChevronToSegment(pts, color, lineWeight) {
@@ -31,10 +35,10 @@ function addChevronToSegment(pts, color, lineWeight) {
       const lat = seg.a.lat + t * (seg.b.lat - seg.a.lat);
       const lng = seg.a.lng + t * (seg.b.lng - seg.a.lng);
       const angle = Math.atan2(seg.b.lng - seg.a.lng, seg.b.lat - seg.a.lat) * 180 / Math.PI;
-      const s = Math.round(lineWeight * 2.5);
+      const s = Math.round(lineWeight * 1.8);
       const sw = Math.max(2, Math.round(lineWeight * 0.45));
       const half = Math.round(s / 2);
-      const svg = `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" style="transform:rotate(${angle}deg)"><path d="M${s * 0.2} ${s * 0.75}L${half} ${s * 0.2}L${s * 0.8} ${s * 0.75}" fill="none" stroke="black" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      const svg = `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" style="transform:rotate(${angle}deg)"><path d="M${s * 0.2} ${s * 0.75}L${half} ${s * 0.2}L${s * 0.8} ${s * 0.75}" fill="none" stroke="${isLightColor(color) ? '#243746' : '#fff'}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
       const m = L.marker([lat, lng], {
         icon: L.divIcon({ className: '', html: svg, iconSize: [s, s], iconAnchor: [half, half] }),
         interactive: false
@@ -46,51 +50,19 @@ function addChevronToSegment(pts, color, lineWeight) {
   }
 }
 
-function smoothLine(pts, iterations = 3, pinIndices) {
-  if (pts.length < 3) return pts;
-  let result = pts.map(p => [p[0], p[1]]);
-  // Track which indices are pinned (should not be moved by smoothing)
-  let pins = new Set(pinIndices || []);
-  for (let iter = 0; iter < iterations; iter++) {
-    const smooth = [result[0]];
-    const newPins = new Set([0]);
-    for (let i = 0; i < result.length - 1; i++) {
-      const [ax, ay] = result[i], [bx, by] = result[i + 1];
-      if (pins.has(i)) {
-        // Pinned point: keep original and add one interpolated point after
-        smooth.push([ax, ay]);
-        smooth.push([ax * 0.25 + bx * 0.75, ay * 0.25 + by * 0.75]);
-        newPins.add(smooth.length - 2);
-      } else if (pins.has(i + 1)) {
-        // Next point is pinned: add one interpolated point before it
-        smooth.push([ax * 0.75 + bx * 0.25, ay * 0.75 + by * 0.25]);
-        smooth.push([bx, by]);
-        newPins.add(smooth.length - 1);
-      } else {
-        smooth.push([ax * 0.75 + bx * 0.25, ay * 0.75 + by * 0.25]);
-        smooth.push([ax * 0.25 + bx * 0.75, ay * 0.25 + by * 0.75]);
-      }
-    }
-    smooth.push(result[result.length - 1]);
-    newPins.add(smooth.length - 1);
-    result = smooth;
-    pins = newPins;
-  }
-  return result;
-}
-
 function getShapeSegment(route, fromStop, toStop) {
-  if (!route.shape || route.shape.length < 2) {
+  const shape = getRouteShape(route.id);
+  if (!shape || shape.length < 2) {
     return [[fromStop.lat, fromStop.lng], [toStop.lat, toStop.lng]];
   }
-  let fromIdx = nearestPointOnShape(route.shape, fromStop);
-  let toIdx = nearestPointOnShape(route.shape, toStop);
+  let fromIdx = nearestPointOnShape(shape, fromStop);
+  let toIdx = nearestPointOnShape(shape, toStop);
   if (fromIdx === toIdx) return [[fromStop.lat, fromStop.lng], [toStop.lat, toStop.lng]];
   let pts;
   if (fromIdx < toIdx) {
-    pts = route.shape.slice(fromIdx, toIdx + 1);
+    pts = shape.slice(fromIdx, toIdx + 1);
   } else {
-    pts = route.shape.slice(toIdx, fromIdx + 1).reverse();
+    pts = shape.slice(toIdx, fromIdx + 1).reverse();
   }
   pts[0] = [fromStop.lat, fromStop.lng];
   pts[pts.length - 1] = [toStop.lat, toStop.lng];
@@ -106,10 +78,17 @@ function nearestPointOnShape(shape, stop) {
   return minIdx;
 }
 
-export function showRoute(legs) {
+export function showRoute(legs, { fitBounds = true } = {}) {
+  if (!geometryListenerAttached) {
+    map.on('routegeometrychange', () => {
+      if (displayedLegs) showRoute(displayedLegs, { fitBounds: false });
+    });
+    geometryListenerAttached = true;
+  }
   if (state.previewStartMarker) { state.previewStartMarker.remove(); state.previewStartMarker = null; }
   if (state.previewEndMarker) { state.previewEndMarker.remove(); state.previewEndMarker = null; }
   clearHighlights();
+  displayedLegs = legs;
   for (const rid in routeOutlines) routeOutlines[rid].setStyle({ weight: 4, opacity: 0.15 });
   for (const rid in routePolylines) routePolylines[rid].setStyle({ weight: 2, opacity: 0.15 });
 
@@ -121,7 +100,6 @@ export function showRoute(legs) {
   legs.forEach(leg => {
     const route = routeById[leg.route];
     const allRaw = [];
-    const segBoundaries = [0];
     const cachedSegments = [];
     for (let i = 0; i + 1 < leg.stops.length; i++) {
       const fromStop = stopById[leg.stops[i]];
@@ -133,31 +111,29 @@ export function showRoute(legs) {
       } else {
         for (let j = 1; j < seg.length; j++) allRaw.push(seg[j]);
       }
-      segBoundaries.push(allRaw.length - 1);
     }
-    const smoothed = smoothLine(allRaw, 3, segBoundaries);
     const noTrips = leg.depTime === null;
-    const outline = L.polyline(smoothed, {
+    const outline = L.polyline(allRaw, {
       color: '#fff', weight: noTrips ? 8 : 10,
       opacity: 1,
       interactive: false, pane: 'routeLines'
     }).addTo(map);
     state.highlightLayers.push(outline);
-    const line = L.polyline(smoothed, {
+    const line = L.polyline(allRaw, {
       color: route.color, weight: noTrips ? 4 : 6,
       opacity: noTrips ? 0.5 : 0.9,
       dashArray: noTrips ? '8 6' : null,
       interactive: false, pane: 'routeLines'
     }).addTo(map);
     state.highlightLayers.push(line);
-    smoothed.forEach(p => bounds.push(p));
+    allRaw.forEach(p => bounds.push(p));
     for (let i = 0; i < cachedSegments.length; i++) {
-      addChevronToSegment(smoothLine(cachedSegments[i]), route.color, noTrips ? 4 : 6);
+      addChevronToSegment(cachedSegments[i], route.color, noTrips ? 4 : 6);
     }
     leg.stops.forEach(sid => {
       const isEndpoint = sid === originId || sid === destId;
       if (isEndpoint) {
-        stopMarkers[sid].setStyle({ color: route.color, weight: 3, fillColor: route.color, fillOpacity: 1 });
+        stopMarkers[sid].setStyle({ radius: 6, color: route.color, weight: 2.5, fillColor: route.color, fillOpacity: 1 });
       } else {
         stopMarkers[sid].setStyle({ color: route.color, weight: 2, fillColor: '#fff', fillOpacity: 1 });
       }
@@ -174,7 +150,7 @@ export function showRoute(legs) {
   const endMarker = L.marker([destStop.lat, destStop.lng], { icon: makePillIcon('End'), interactive: false }).addTo(map);
   state.highlightLayers.push(endMarker);
 
-  if (bounds.length) {
+  if (fitBounds && bounds.length) {
     if (isMobile()) {
       const ZOOM = 14;
       setTimeout(() => {

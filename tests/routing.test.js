@@ -205,11 +205,12 @@ test('real feed matches independent earliest-arrival searches and every leg is b
   state.transferTime = 5;
   const pairs = [
     ['soundview', 'st-george'], ['bay-ridge', 'astoria'],
-    ['wall-st-pier-11', 'east-34th-street'], ['red-hook', 'ferry-point-park'],
+    ['wall-st-pier-11', 'east-34th-street'], ['red-hook-atlantic-basin', 'ferry-point-park'],
     ['hunters-point-south', 'beach-channel-dr-beach-108th-street'],
   ];
   for (const date of ['2026-11-02', '2026-11-07']) {
     for (const [from, to] of pairs) {
+      assert.ok(stops.some(s => s.id === from) && stops.some(s => s.id === to), 'Real-feed fixture stops must exist');
       for (const start of [420, 720, 1080]) {
         const best = findOptions(from, to, date, start, 'depart')[1];
         assert.equal(getArrival(best), earliestArrival(from, to, date, start), `${from} → ${to}, ${date}, ${start}`);

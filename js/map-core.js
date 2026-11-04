@@ -3,6 +3,7 @@
 import { stops, routes, stopById, routeById, routeStopSequences } from './data.js';
 import { state, STYLE_STORAGE_KEY } from './state.js';
 import { CONFIG } from './config.js';
+import { buildRouteLanes, layoutRouteLanes } from './route-geometry.js';
 
 export const DEFAULT_VIEW = { lat: 40.6989, lng: -73.9922, zoom: 13 };
 const OSM_TILES = {
@@ -64,13 +65,18 @@ export function createTileLayer(styleKey) {
   return layer;
 }
 
-export const LANDING_SIZE = 8;
+export const LANDING_SIZE = 5;
+export const BASE_ROUTE_STYLE = { weight: 4, opacity: 0.85 };
+export const BASE_OUTLINE_STYLE = { weight: 7, opacity: 0.95 };
+let routeShapes = new Map();
+export function getRouteShape(routeId) { return routeShapes.get(routeId) || []; }
+export function stopRadius(stopId) { return stopById[stopId].routes.length > 1 ? 6 : LANDING_SIZE; }
 export let map;
 export let stopMarkers = {};
 export let routeOutlines = {};
 export let routePolylines = {};
 
-function isLightColor(hex) {
+export function isLightColor(hex) {
   hex = hex.replace('#', '');
   if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
   const r = parseInt(hex.substring(0, 2), 16);
@@ -80,12 +86,13 @@ function isLightColor(hex) {
 }
 
 export function makePillIcon(label) {
-  const w = label === 'Start' ? 52 : 44;
+  const isStart = label === 'Start';
+  const w = isStart ? 78 : 70;
   return L.divIcon({
     className: '',
-    html: `<div class="start-end-marker" style="pointer-events:none">${label}</div>`,
-    iconSize: [w, 36],
-    iconAnchor: [w / 2, 36]
+    html: `<div class="trip-endpoint"><span class="trip-endpoint-key">${isStart ? 'A' : 'B'}</span><span>${label}</span></div>`,
+    iconSize: [w, 28],
+    iconAnchor: [w / 2, 40]
   });
 }
 
@@ -110,6 +117,9 @@ export function initMap() {
   state.currentTileLayer = createTileLayer(state.activeStyleKey).addTo(map);
 
   // Custom pane for route lines — below overlayPane (400) so stop markers always appear on top
+  map.createPane('routeOutlines');
+  map.getPane('routeOutlines').style.zIndex = 340;
+  map.getPane('routeOutlines').style.pointerEvents = 'none';
   map.createPane('routeLines');
   map.getPane('routeLines').style.zIndex = 350;
   map.getPane('routeLines').style.pointerEvents = 'none';
@@ -117,6 +127,7 @@ export function initMap() {
   // Route outlines and lines
   routeOutlines = {};
   routePolylines = {};
+  const paths = [];
   routes.forEach(r => {
     if (r.shape.length > 0) {
       let shape = r.shape.map(p => [p[0], p[1]]);
@@ -146,14 +157,31 @@ export function initMap() {
           shape.splice(ins.idx, 0, ins.coord);
         }
       }
+      const landingPoints = new Set((seq || []).map(id => stopById[id]).filter(Boolean).map(s => `${s.lat},${s.lng}`));
+      paths.push({ id: r.id, points: shape.map(coord => ({ ...map.project(coord, 16), pin: landingPoints.has(coord.join(',')) })) });
       routeOutlines[r.id] = L.polyline(shape, {
-        color: '#fff', weight: 5, opacity: 0.6, interactive: false, pane: 'routeLines'
+        color: '#fff', ...BASE_OUTLINE_STYLE, interactive: false, pane: 'routeOutlines'
       }).addTo(map);
       routePolylines[r.id] = L.polyline(shape, {
-        color: r.color, weight: 3, opacity: 0.65, interactive: false, pane: 'routeLines'
+        color: r.color, ...BASE_ROUTE_STYLE, interactive: false, pane: 'routeLines'
       }).addTo(map);
     }
   });
+
+  const laneModel = buildRouteLanes(paths);
+  function updateRouteGeometry() {
+    const scale = map.getZoomScale(map.getZoom(), 16);
+    routeShapes = new Map([...layoutRouteLanes(laneModel, scale)].map(([id, points]) => [
+      id, points.map(p => { const ll = map.unproject([p.x, p.y], map.getZoom()); return [ll.lat, ll.lng]; })
+    ]));
+    for (const [id, shape] of routeShapes) {
+      routeOutlines[id].setLatLngs(shape);
+      routePolylines[id].setLatLngs(shape);
+    }
+    map.fire('routegeometrychange');
+  }
+  updateRouteGeometry();
+  map.on('zoomend', updateRouteGeometry);
 
   // Easter egg
   L.marker([40.6892, -74.0445], {
@@ -168,8 +196,8 @@ export function initMap() {
   stops.forEach(s => {
     const marker = L.circleMarker([s.lat, s.lng], {
       renderer: stopRenderer,
-      radius: LANDING_SIZE, fillColor: '#fff', fillOpacity: 1,
-      color: '#333', weight: 1.5
+      radius: stopRadius(s.id), fillColor: '#fff', fillOpacity: 1,
+      color: '#425466', weight: 2
     }).addTo(map);
 
     const routeTags = s.routes.map(rid => {

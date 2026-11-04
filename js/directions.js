@@ -5,7 +5,7 @@ import { state, shiftRoute, setSearchResult, setActiveRouteIdx } from './state.j
 import { formatTime, formatDuration } from './time-utils.js';
 import { getArrival, getDeparture, getTotalTime, getMaxWait, isComplete, findOptions } from './routing.js';
 import { showRoute, clearHighlights } from './route-drawing.js';
-import { map } from './map-core.js';
+import { map, isLightColor } from './map-core.js';
 import { isMobile, closeMapOverlay, setSheetSnap } from './sheet.js';
 
 const BASE_LABELS = ['Earlier', 'Best', 'Later'];
@@ -42,7 +42,7 @@ function renderLegs(resolvedLegs) {
 
     html += `<div class="tl-leg" style="color:${route.color}">`;
     html += `<div class="tl-route">` +
-      `<span class="tl-route-badge" style="background:${route.color}">\u26F4 ${route.name}</span>` +
+      `<span class="tl-route-badge" style="background:${route.color};color:${isLightColor(route.color) ? '#243746' : '#fff'}">\u26F4 ${route.name}</span>` +
       (leg.toward && leg.toward !== alightStop ? `<br><span class="tl-route-dir">Direction: ${leg.toward}</span>` : '') +
       `</div>`;
     if (leg.depTime !== null) {

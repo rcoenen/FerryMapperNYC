@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="81">
+<meta name="app-build" content="82">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.15.0/dist/maplibre-gl.css" />
@@ -120,7 +120,7 @@
       // Version the whole module graph, so cached imports cannot mix releases.
       const moduleNames = [
         'config', 'data', 'datetime-input', 'directions', 'dom', 'errors',
-        'map-core', 'modals', 'route-drawing', 'routing', 'settings', 'sheet',
+        'map-core', 'modals', 'route-drawing', 'route-geometry', 'routing', 'settings', 'sheet',
         'state', 'time-utils'
       ];
       const imports = {};
@@ -179,7 +179,7 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">81</code>
+      Build: <code id="build-number">82</code>
     </div>
   </div>
 </header>
@@ -217,7 +217,7 @@
       <strong>Routing</strong> searches actual ferry departures and connections across the timetable. Depart-at searches find the earliest arrival; arrive-by searches find the latest departure that meets your deadline. When departure and arrival times match, fewer transfers win. Transfer buffers apply when changing ferries, and the map and directions use the stops served by your selected trip.
     </p>
     <p>
-      <strong>Map lines</strong> needed smoothing so routes follow the waterway instead of zigzagging between GPS points. We tried <strong><a href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline" target="_blank">Catmull-Rom splines</a></strong>, <strong><a href="https://en.wikipedia.org/wiki/B-spline" target="_blank">cubic B-splines</a></strong>, and simple moving-average filters before settling on <strong><a href="https://smarx.com/posts/2020/08/chaikin-curves-a-beautifully-simple-algorithm/" target="_blank">Chaikin corner-cutting</a></strong> &mdash; it gave the cleanest curves without overshooting tight harbor bends.
+      <strong>Map lines</strong> use separate lanes where routes share a corridor, with constant pixel spacing as you zoom. Rounded joins keep bends tidy, and the lines meet at their actual landings. Selected trips use the same geometry as the network map.
     </p>
     <p>
       <strong>Three options</strong> (Earlier / Best / Later) come from exact scheduled departures across the selected date. Trips overtaken by later ferries are removed, and navigation follows the remaining journeys without sampling times.
