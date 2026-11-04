@@ -50,7 +50,7 @@ npm run lint          # syntax checks for all application modules
 - Single `index.html` — no build tools, no frameworks
 - [Leaflet](https://leafletjs.com/) ferry overlays + [MapLibre](https://maplibre.org/) / [OpenFreeMap](https://openfreemap.org/) simplified vector basemaps (no API key)
 - Shared ferry corridors use separate parallel lanes, with spacing preserved on zoom and compact A/B endpoint labels.
-- Light and Dark maps hide buildings, minor roads, and street labels; Classic uses standard OpenStreetMap tiles and also serves as the fallback on devices without WebGL
+- Light and Dark maps use blue water, green parks, clear neighborhood labels, and muted street detail. Building and business clutter stays hidden, and minor street names appear only at close zoom. Classic uses standard OpenStreetMap tiles and also serves as the fallback on devices without WebGL.
 - Node.js script for GTFS data preparation
 - GTFS source: [NYC Ferry Connexionz feed](https://nycferry.connexionz.net/rtt/public/utility/gtfs.aspx)
 

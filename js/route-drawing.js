@@ -2,7 +2,7 @@
 
 import { stopById, routeById } from './data.js';
 import { state } from './state.js';
-import { map, stopMarkers, routeOutlines, routePolylines, BASE_ROUTE_STYLE, BASE_OUTLINE_STYLE, stopRadius, getRouteShape, makePillIcon, isLightColor } from './map-core.js';
+import { map, stopMarkers, routeOutlines, routePolylines, BASE_ROUTE_STYLE, BASE_OUTLINE_STYLE, stopRadius, getRouteShape, makePillIcon } from './map-core.js';
 import { isMobile } from './sheet.js';
 
 let displayedLegs = null;
@@ -18,35 +18,34 @@ export function clearHighlights() {
 }
 
 function addChevronToSegment(pts, color, lineWeight) {
-  const segs = [];
-  let totalLen = 0;
-  for (let i = 0; i + 1 < pts.length; i++) {
-    const a = L.latLng(pts[i]), b = L.latLng(pts[i + 1]);
-    const len = a.distanceTo(b);
-    segs.push({ a, b, len });
-    totalLen += len;
+  const segments = [];
+  let total = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = map.latLngToLayerPoint(pts[i - 1]), b = map.latLngToLayerPoint(pts[i]);
+    const length = a.distanceTo(b);
+    if (length < 1) continue;
+    segments.push({ a, b, length });
+    total += length;
   }
-  const straightLine = L.latLng(pts[0]).distanceTo(L.latLng(pts[pts.length - 1]));
-  if (straightLine < 200 || totalLen > straightLine * 1.8) return;
-  let target = totalLen / 2;
-  for (const seg of segs) {
-    if (target <= seg.len) {
-      const t = target / seg.len;
-      const lat = seg.a.lat + t * (seg.b.lat - seg.a.lat);
-      const lng = seg.a.lng + t * (seg.b.lng - seg.a.lng);
-      const angle = Math.atan2(seg.b.lng - seg.a.lng, seg.b.lat - seg.a.lat) * 180 / Math.PI;
-      const s = Math.round(lineWeight * 1.8);
-      const sw = Math.max(2, Math.round(lineWeight * 0.45));
-      const half = Math.round(s / 2);
-      const svg = `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" style="transform:rotate(${angle}deg)"><path d="M${s * 0.2} ${s * 0.75}L${half} ${s * 0.2}L${s * 0.8} ${s * 0.75}" fill="none" stroke="${isLightColor(color) ? '#243746' : '#fff'}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-      const m = L.marker([lat, lng], {
-        icon: L.divIcon({ className: '', html: svg, iconSize: [s, s], iconAnchor: [half, half] }),
-        interactive: false
+  if (total < 80) return;
+  const count = Math.min(8, Math.max(1, Math.floor(total / 140)));
+  for (let i = 0; i < count; i++) {
+    let remaining = total * (i + 0.5) / count;
+    for (const segment of segments) {
+      if (remaining > segment.length) { remaining -= segment.length; continue; }
+      const dx = (segment.b.x - segment.a.x) / segment.length;
+      const dy = (segment.b.y - segment.a.y) / segment.length;
+      const offset = lineWeight / 2 + 9;
+      const point = L.point(segment.a.x + dx * remaining + dy * offset, segment.a.y + dy * remaining - dx * offset);
+      const angle = Math.atan2(dx, -dy) * 180 / Math.PI;
+      const path = 'M4 8L8 3L12 8M8 3V14';
+      const svg = `<svg width="16" height="16" viewBox="0 0 16 16" style="transform:rotate(${angle}deg)"><path d="${path}" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      const marker = L.marker(map.layerPointToLatLng(point), {
+        icon: L.divIcon({ className: '', html: svg, iconSize: [16, 16], iconAnchor: [8, 8] }), interactive: false,
       }).addTo(map);
-      state.highlightLayers.push(m);
-      return;
+      state.highlightLayers.push(marker);
+      break;
     }
-    target -= seg.len;
   }
 }
 
@@ -114,26 +113,26 @@ export function showRoute(legs, { fitBounds = true } = {}) {
     }
     const noTrips = leg.depTime === null;
     const outline = L.polyline(allRaw, {
-      color: '#fff', weight: noTrips ? 8 : 10,
+      color: '#fff', weight: 7,
       opacity: 1,
       interactive: false, pane: 'routeLines'
     }).addTo(map);
     state.highlightLayers.push(outline);
     const line = L.polyline(allRaw, {
-      color: route.color, weight: noTrips ? 4 : 6,
-      opacity: noTrips ? 0.5 : 0.9,
+      color: route.color, weight: 4,
+      opacity: noTrips ? 0.5 : 1,
       dashArray: noTrips ? '8 6' : null,
       interactive: false, pane: 'routeLines'
     }).addTo(map);
     state.highlightLayers.push(line);
     allRaw.forEach(p => bounds.push(p));
     for (let i = 0; i < cachedSegments.length; i++) {
-      addChevronToSegment(cachedSegments[i], route.color, noTrips ? 4 : 6);
+      addChevronToSegment(cachedSegments[i], route.color, 4);
     }
     leg.stops.forEach(sid => {
       const isEndpoint = sid === originId || sid === destId;
       if (isEndpoint) {
-        stopMarkers[sid].setStyle({ radius: 6, color: route.color, weight: 2.5, fillColor: route.color, fillOpacity: 1 });
+        stopMarkers[sid].setStyle({ radius: 5.5, color: route.color, weight: 2.5, fillColor: '#fff', fillOpacity: 1 });
       } else {
         stopMarkers[sid].setStyle({ color: route.color, weight: 2, fillColor: '#fff', fillOpacity: 1 });
       }

@@ -16,23 +16,75 @@ const VECTOR_ATTRIBUTION = '<a href="https://openfreemap.org/">OpenFreeMap</a> &
 
 // Keep existing preference IDs while using genuinely simplified vector styles.
 export const MAP_STYLES = {
-  positron: { style: 'https://tiles.openfreemap.org/styles/positron' },
+  positron: { style: 'https://tiles.openfreemap.org/styles/liberty' },
   darkMatter: { style: 'https://tiles.openfreemap.org/styles/dark' },
   osm: OSM_TILES,
 };
 
-function simplifyBasemap(gl, styleKey) {
-  // Retain coastlines, parks, major roads, water names, and neighborhood labels.
-  // Buildings, rail tracks, shields, and street names compete with ferry routes.
-  const hiddenSources = new Set(['building', 'poi', 'housenumber', 'transportation_name', 'aerodrome_label']);
-  if (gl.getLayer('water')) {
-    gl.setPaintProperty('water', 'fill-color', styleKey === 'darkMatter' ? '#182631' : '#dfedf3');
-  }
+function styleBasemap(gl, styleKey) {
+  const dark = styleKey === 'darkMatter';
+  const hiddenSources = new Set(['building', 'poi', 'housenumber']);
+  const fills = {
+    water: dark ? '#18394a' : '#a3d9e9',
+    park: dark ? '#203d35' : '#cfefdc',
+    landcover_wood: dark ? '#203d35' : '#cfefdc',
+    landcover_grass: dark ? '#243d35' : '#d9efdf',
+    landuse_residential: dark ? '#242e38' : '#f0f2f4',
+  };
   for (const layer of gl.getStyle().layers) {
+    const id = layer.id;
     if (hiddenSources.has(layer['source-layer']) ||
-        /^(railway|aeroway|highway_path|highway_minor|boundary_3)/.test(layer.id)) {
-      gl.setLayoutProperty(layer.id, 'visibility', 'none');
+        /rail|path_pedestrian|service_track|one_way_arrow|boundary_3/.test(id) ||
+        id === 'highway-name-path') {
+      gl.setLayoutProperty(id, 'visibility', 'none');
     }
+    if (fills[id]) gl.setPaintProperty(id, 'fill-color', fills[id]);
+    if (layer.type === 'background') gl.setPaintProperty(id, 'background-color', dark ? '#202932' : '#f7f8f9');
+    if (layer.type === 'line' && /^(road|bridge|tunnel)_/.test(id) && !/rail|pier|path/.test(id)) {
+      const casing = id.includes('casing');
+      const major = /motorway|trunk_primary/.test(id);
+      const color = dark
+        ? (major ? (casing ? '#35475b' : '#627790') : (casing ? '#273543' : '#354453'))
+        : (major ? (casing ? '#758ca9' : '#b5c5dc') : (casing ? '#d7dfe7' : '#fff'));
+      gl.setPaintProperty(id, 'line-color', color);
+    }
+    if (layer.type === 'symbol' && layer['source-layer'] === 'place') {
+      gl.setLayoutProperty(id, 'text-font', ['Noto Sans Regular']);
+      gl.setPaintProperty(id, 'text-color', dark ? '#dce6ed' : '#353f48');
+      gl.setPaintProperty(id, 'text-halo-color', dark ? '#202932' : '#fff');
+      gl.setPaintProperty(id, 'text-halo-width', 1.5);
+      if (id === 'label_other') {
+        gl.setLayoutProperty(id, 'text-size', ['interpolate', ['linear'], ['zoom'], 10, 10, 14, 12]);
+        gl.setLayoutProperty(id, 'text-letter-spacing', 0.06);
+      }
+      if (id === 'label_city') gl.setLayoutProperty(id, 'text-size', ['interpolate', ['linear'], ['zoom'], 10, 16, 13, 23, 16, 26]);
+    }
+    if (layer['source-layer'] === 'water_name' && layer.type === 'symbol') {
+      gl.setLayoutProperty(id, 'text-font', ['Noto Sans Regular']);
+      gl.setLayoutProperty(id, 'text-letter-spacing', 0.03);
+      gl.setPaintProperty(id, 'text-color', dark ? '#81b0c6' : '#4c839a');
+      gl.setPaintProperty(id, 'text-halo-color', dark ? '#18394a' : '#d8f0f8');
+    }
+    if (id === 'highway-name-minor') gl.setLayerZoomRange(id, 16, 24);
+    if (id === 'highway-name-major') gl.setLayerZoomRange(id, 13.5, 24);
+    if (id === 'park') {
+      gl.setFilter(id, ['all', gl.getFilter(id) || ['literal', true], ['!', ['in', ['get', 'class'], ['literal', ['historic', 'historic_district', 'marine']]]]]);
+      gl.setPaintProperty(id, 'fill-opacity', 1);
+      gl.setPaintProperty(id, 'fill-outline-color', dark ? '#28493b' : '#c5e7d1');
+    }
+    if (id === 'park_outline') gl.setLayoutProperty(id, 'visibility', 'none');
+  }
+  if (!gl.getLayer('ferry-park-label')) {
+    gl.addLayer({
+      id: 'ferry-park-label', type: 'symbol', source: 'openmaptiles', 'source-layer': 'park', minzoom: 12,
+      filter: ['!', ['in', ['get', 'class'], ['literal', ['historic', 'historic_district', 'marine']]]],
+      layout: {
+        'text-field': ['coalesce', ['get', 'name:en'], ['get', 'name'], ''],
+        'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 12, 11, 15, 13],
+        'text-max-width': 10, 'text-padding': 10,
+      },
+      paint: { 'text-color': dark ? '#98c9a8' : '#42896d', 'text-halo-color': dark ? '#203d35' : '#fff', 'text-halo-width': 1.5 },
+    });
   }
 }
 
@@ -60,7 +112,7 @@ export function createTileLayer(styleKey) {
   });
   layer.once('add', () => {
     const gl = layer.getMaplibreMap();
-    gl.on('style.load', () => simplifyBasemap(gl, styleKey));
+    gl.on('style.load', () => styleBasemap(gl, styleKey));
   });
   return layer;
 }
