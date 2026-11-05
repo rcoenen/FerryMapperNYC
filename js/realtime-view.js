@@ -2,7 +2,7 @@ import { map } from './map-core.js';
 import { routeById, stopById, stopAliases, schedules, metadata } from './data.js';
 import { state, subscribeState } from './state.js';
 import { getRealtimeSnapshot, subscribeRealtime } from './realtime.js';
-import { getVehicles, getAlerts, isFeedFresh, trackVesselHeading, seededVesselHeading } from './realtime-core.js';
+import { getVehicles, getAlerts, isFeedFresh, trackVesselHeading, seededVesselHeading, seededVesselTrail } from './realtime-core.js';
 
 const clock = epoch => new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' }).format(new Date(epoch * 1000));
 function textElement(tag, text, className = '') {
@@ -38,7 +38,11 @@ export function initRealtimeView() {
     const selected = vehicles.find(v => v.id === selectedVehicleId) || null;
     if (selectedVehicleId && (!selected || !state.showLiveBoats)) selectedVehicleId = null; // boat expired or boats hidden
     const seen = new Set();
-    for (const vehicle of vehicles) trackVesselHeading(headings, vehicle, seededVesselHeading(vehicle, tripsById[vehicle.tripId], stopById));
+    for (const vehicle of vehicles) {
+      const known = headings.has(vehicle.id); // backfill the scheduled path only on first sighting
+      trackVesselHeading(headings, vehicle, seededVesselHeading(vehicle, tripsById[vehicle.tripId], stopById),
+        known ? null : seededVesselTrail(vehicle, tripsById[vehicle.tripId], stopById));
+    }
     for (const vehicle of !state.showLiveBoats ? [] : selected ? [selected] : vehicles) {
       seen.add(vehicle.id);
       const heading = headings.get(vehicle.id)?.bearing;
@@ -56,7 +60,7 @@ export function initRealtimeView() {
       }
       const popup = document.createElement('div');
       popup.append(textElement('strong', vehicle.label), textElement('p', routeById[vehicle.routeId].name), textElement('small', `Live position · reported ${clock(vehicle.timestamp)}`));
-      if (vehicle.id === selectedVehicleId) popup.append(textElement('small', 'Trail shown · click the boat or the water to see all boats'));
+      if (vehicle.id === selectedVehicleId) popup.append(textElement('small', 'Trail shown · click the boat or the water to see all boats', 'trail-hint'));
       if (entry.marker.getPopup()) entry.marker.setPopupContent(popup);
       else entry.marker.bindPopup(popup);
     }
@@ -66,7 +70,8 @@ export function initRealtimeView() {
       if (!trailLine) trailLine = L.polyline(trailPoints, { color, weight: 3, opacity: 0.55, dashArray: '4 8' }).addTo(map);
       else { trailLine.setLatLngs(trailPoints); trailLine.setStyle({ color }); }
     } else if (trailLine) { map.removeLayer(trailLine); trailLine = null; }
-    for (const [id, entry] of markers) if (!seen.has(id)) { map.removeLayer(entry.marker); markers.delete(id); headings.delete(id); }
+    const active = new Set(vehicles.map(v => v.id));
+    for (const [id, entry] of markers) if (!seen.has(id)) { map.removeLayer(entry.marker); markers.delete(id); if (!active.has(id)) headings.delete(id); }
 
     const updates = snapshot.feeds.tripUpdates;
     const now = Date.now() / 1000;

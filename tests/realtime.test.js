@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applyTripUpdates, epochToServiceMinutes, getVehicles, getAlerts, isFeedFresh, applyServiceAlerts, trackVesselHeading, seededVesselHeading } from '../js/realtime-core.js';
+import { applyTripUpdates, epochToServiceMinutes, getVehicles, getAlerts, isFeedFresh, applyServiceAlerts, trackVesselHeading, seededVesselHeading, seededVesselTrail } from '../js/realtime-core.js';
 import { loadData } from '../js/data.js';
 import { findOptions, getArrival } from '../js/routing.js';
 import { setRealtimeSnapshot } from '../js/realtime.js';
@@ -113,6 +113,24 @@ test('vessel trails record breadcrumbs, ignore drift, and cap their length', () 
   for (let i = 0; i < 300; i++) trackVesselHeading(history, boat(40.7, -74 + i * 0.001));
   assert.equal(history.get('T1').trail.length, 240); // TRAIL_MAX_POINTS
   assert.deepEqual(history.get('T1').trail.at(-1), [40.7, -74 + 299 * 0.001]); // oldest points dropped first
+});
+
+test('trails backfill the scheduled path once, then follow live breadcrumbs', () => {
+  const trip = { t: 'x', stops: [{ id: 'A' }, { id: 'B' }, { id: 'C' }] };
+  const stops = { A: { lat: 40.7, lng: -74.02 }, B: { lat: 40.7, lng: -74.0 }, C: { lat: 40.71, lng: -73.99 } };
+  const mid = { id: 'H1', lat: 40.7, lng: -74.01, bearing: undefined }; // halfway along leg A→B
+  const backfill = seededVesselTrail(mid, trip, stops);
+  assert.equal(backfill.length, 2);
+  assert.deepEqual(backfill[0], [40.7, -74.02]); // departs from stop A
+  assert.ok(Math.abs(backfill[1][1] - -74.01) < 1e-9, `projection ~-74.01, got ${backfill[1][1]}`);
+  assert.equal(seededVesselTrail(mid, undefined, stops), null); // unknown trip stays unseeded
+  const history = new Map();
+  trackVesselHeading(history, mid, seededVesselHeading(mid, trip, stops), backfill);
+  assert.equal(history.get('H1').trail.length, 3); // scheduled prefix + first sighting
+  assert.deepEqual(history.get('H1').trail[0], [40.7, -74.02]);
+  trackVesselHeading(history, { id: 'H1', lat: 40.7, lng: -74.005, bearing: undefined }); // ~420m east
+  assert.equal(history.get('H1').trail.length, 4); // live points append, backfill never repeats
+  assert.deepEqual(history.get('H1').trail.at(-1), [40.7, -74.005]);
 });
 
 test('service alerts respect active periods, route scope, and English translations', () => {
