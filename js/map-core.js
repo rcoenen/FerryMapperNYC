@@ -175,6 +175,12 @@ export function initMap() {
   map.createPane('routeLines');
   map.getPane('routeLines').style.zIndex = 350;
   map.getPane('routeLines').style.pointerEvents = 'none';
+  // Trails and live boats also stay below overlayPane (400) so landings always win clicks over boats
+  map.createPane('trailLines');
+  map.getPane('trailLines').style.zIndex = 355;
+  map.getPane('trailLines').style.pointerEvents = 'none';
+  map.createPane('liveBoats');
+  map.getPane('liveBoats').style.zIndex = 380;
 
   // Route outlines and lines
   routeOutlines = {};

@@ -48,7 +48,7 @@ export function initRealtimeView() {
       const heading = headings.get(vehicle.id)?.bearing;
       let entry = markers.get(vehicle.id);
       if (!entry) {
-        entry = { marker: L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle, heading), title: 'Live NYC Ferry', zIndexOffset: 500, bubblingMouseEvents: false }).addTo(map), routeId: vehicle.routeId };
+        entry = { marker: L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle, heading), title: 'Live NYC Ferry', pane: 'liveBoats', bubblingMouseEvents: false }).addTo(map), routeId: vehicle.routeId };
         entry.marker.on('click', () => selectVehicle(selectedVehicleId === vehicle.id ? null : vehicle.id));
         markers.set(vehicle.id, entry);
       } else {
@@ -67,7 +67,7 @@ export function initRealtimeView() {
     const trailPoints = selected && state.showLiveBoats ? headings.get(selected.id)?.trail : null;
     if (trailPoints?.length > 1) {
       const color = routeById[selected.routeId].color;
-      if (!trailLine) trailLine = L.polyline(trailPoints, { color, weight: 3, opacity: 0.55, dashArray: '4 8' }).addTo(map);
+      if (!trailLine) trailLine = L.polyline(trailPoints, { color, weight: 3, opacity: 0.55, dashArray: '4 8', pane: 'trailLines' }).addTo(map);
       else { trailLine.setLatLngs(trailPoints); trailLine.setStyle({ color }); }
     } else if (trailLine) { map.removeLayer(trailLine); trailLine = null; }
     const active = new Set(vehicles.map(v => v.id));
