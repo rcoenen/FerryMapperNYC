@@ -175,12 +175,12 @@ export function initMap() {
   map.createPane('routeLines');
   map.getPane('routeLines').style.zIndex = 350;
   map.getPane('routeLines').style.pointerEvents = 'none';
-  // Trails and live boats also stay below overlayPane (400) so landings always win clicks over boats
+  // Trails and live boats stay below the marker pane (600), where DOM landing markers win clicks over boats
   map.createPane('trailLines');
   map.getPane('trailLines').style.zIndex = 355;
   map.getPane('trailLines').style.pointerEvents = 'none';
   map.createPane('liveBoats');
-  map.getPane('liveBoats').style.zIndex = 380;
+  map.getPane('liveBoats').style.zIndex = 450;
 
   // Route outlines and lines
   routeOutlines = {};
@@ -247,16 +247,32 @@ export function initMap() {
     zIndexOffset: -1
   }).addTo(map).bindPopup('Regular ferry to the Statue?<br>Not happening. That\'s <a href="https://www.cityexperiences.com/new-york/city-cruises/statue/" target="_blank" rel="noopener">Statue City Cruises</a>.<br><br>\u26A0\uFE0F Skip the scammers \u2014 buy tickets at the official desk only.');
 
-  // Stop markers with popups
-  // Canvas renderer with tolerance gives a bigger invisible tap target on touch devices
-  const stopRenderer = L.canvas({ tolerance: 14 });
+  // Stop markers with popups.
+  // DOM markers (not a shared canvas) so landings always stack above live boats and win clicks;
+  // the 26px transparent wrapper keeps a generous tap target like the old canvas tolerance did.
   stopMarkers = {};
   stops.forEach(s => {
-    const marker = L.circleMarker([s.lat, s.lng], {
-      renderer: stopRenderer,
-      radius: stopRadius(s.id), fillColor: '#fff', fillOpacity: 1,
-      color: '#425466', weight: 2
+    let radius = stopRadius(s.id), color = '#425466', weight = 2;
+    const marker = L.marker([s.lat, s.lng], {
+      icon: L.divIcon({ className: 'landing-dot', iconSize: [26, 26], iconAnchor: [13, 13], html: '<i></i>' }),
+      title: s.name, zIndexOffset: 500,
     }).addTo(map);
+    const paint = () => {
+      const dot = marker.getElement()?.querySelector('.landing-dot i');
+      if (!dot) return;
+      dot.style.width = dot.style.height = `${(radius + weight) * 2}px`;
+      dot.style.borderColor = color;
+      dot.style.borderWidth = `${weight}px`;
+    };
+    // Keep circleMarker's setStyle contract for route highlighting.
+    marker.setStyle = ({ radius: r = radius, color: c = color, weight: w = weight, fillColor, fillOpacity }) => {
+      radius = r; color = c; weight = w;
+      paint();
+      const dot = marker.getElement()?.querySelector('.landing-dot i');
+      if (dot && fillColor) dot.style.background = fillColor;
+      if (dot && fillOpacity !== undefined) dot.style.opacity = fillOpacity;
+    };
+    paint();
 
     const routeTags = s.routes.map(rid => {
       const r = routeById[rid];
