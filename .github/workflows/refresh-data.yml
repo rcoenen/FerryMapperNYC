@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -38,3 +39,9 @@ jobs:
             git commit -m "Refresh ferry data $(date -u '+%Y-%m-%d')"
             git push
           fi
+
+      # GITHUB_TOKEN commits do not trigger the branch's Pages build automatically.
+      - name: Publish refreshed timetable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
