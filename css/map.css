@@ -150,3 +150,4 @@
 
 .live-vessel-marker { background: transparent; border: 0; }
 .live-vessel { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--vessel-color); border: 1px solid #d3dde4; box-shadow: 0 2px 7px rgba(15,35,50,.25); }
+.live-vessel svg { transition: transform 1.2s ease; }

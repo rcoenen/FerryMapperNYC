@@ -2,7 +2,7 @@ import { map } from './map-core.js';
 import { routeById, stopById, stopAliases, schedules, metadata } from './data.js';
 import { state, subscribeState } from './state.js';
 import { getRealtimeSnapshot, subscribeRealtime } from './realtime.js';
-import { getVehicles, getAlerts, isFeedFresh } from './realtime-core.js';
+import { getVehicles, getAlerts, isFeedFresh, trackVesselHeading, seededVesselHeading } from './realtime-core.js';
 
 const clock = epoch => new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' }).format(new Date(epoch * 1000));
 function textElement(tag, text, className = '') {
@@ -11,9 +11,9 @@ function textElement(tag, text, className = '') {
   element.className = className;
   return element;
 }
-function vesselIcon(vehicle) {
+function vesselIcon(vehicle, heading) {
   const color = routeById[vehicle.routeId].color;
-  const angle = Number.isFinite(vehicle.bearing) ? vehicle.bearing : 0;
+  const angle = Number.isFinite(heading) ? heading : 0;
   return L.divIcon({ className: 'live-vessel-marker', iconSize: [28, 28], iconAnchor: [14, 14],
     html: `<div class="live-vessel" style="--vessel-color:${color}"><svg viewBox="0 0 24 24" width="19" height="19" style="transform:rotate(${angle}deg)" aria-hidden="true"><path d="M12 2L18 8V18L12 22L6 18V8Z" fill="currentColor" stroke="#fff" stroke-width="1.8"/><path d="M9 10H15M9 14H15" stroke="#fff" stroke-width="1.5"/></svg></div>` });
 }
@@ -21,7 +21,8 @@ export function initRealtimeView() {
   const panel = document.getElementById('live-panel');
   const label = document.getElementById('live-label');
   const content = document.getElementById('live-content');
-  const markers = new Map();
+  const markers = new Map(); // vehicle id -> { marker, routeId }
+  const headings = new Map(); // vehicle id -> last position + derived bearing
   const tripsById = Object.fromEntries(schedules.map(t => [t.t, t]));
   function render() {
     const snapshot = getRealtimeSnapshot();
@@ -29,19 +30,27 @@ export function initRealtimeView() {
     const allVehicles = getVehicles(snapshot.feeds.vehicles, tripsById, routeById);
     const vehicles = allVehicles.filter(v => !selectedRoutes.length || selectedRoutes.includes(v.routeId));
     const seen = new Set();
+    for (const vehicle of vehicles) trackVesselHeading(headings, vehicle, seededVesselHeading(vehicle, tripsById[vehicle.tripId], stopById));
     for (const vehicle of state.showLiveBoats ? vehicles : []) {
       seen.add(vehicle.id);
-      let marker = markers.get(vehicle.id);
-      if (!marker) {
-        marker = L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle), title: 'Live NYC Ferry', zIndexOffset: 500 }).addTo(map);
-        markers.set(vehicle.id, marker);
-      } else marker.setLatLng([vehicle.lat, vehicle.lng]).setIcon(vesselIcon(vehicle));
+      const heading = headings.get(vehicle.id)?.bearing;
+      let entry = markers.get(vehicle.id);
+      if (!entry) {
+        entry = { marker: L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle, heading), title: 'Live NYC Ferry', zIndexOffset: 500 }).addTo(map), routeId: vehicle.routeId };
+        markers.set(vehicle.id, entry);
+      } else {
+        entry.marker.setLatLng([vehicle.lat, vehicle.lng]);
+        const svg = entry.routeId === vehicle.routeId ? entry.marker.getElement()?.querySelector('.live-vessel svg') : null;
+        if (svg) svg.style.transform = `rotate(${Number.isFinite(heading) ? heading : 0}deg)`; // rotate in place so the CSS transition runs
+        else entry.marker.setIcon(vesselIcon(vehicle, heading)); // first paint or route change
+        entry.routeId = vehicle.routeId;
+      }
       const popup = document.createElement('div');
       popup.append(textElement('strong', vehicle.label), textElement('p', routeById[vehicle.routeId].name), textElement('small', `Live position · reported ${clock(vehicle.timestamp)}`));
-      if (marker.getPopup()) marker.setPopupContent(popup);
-      else marker.bindPopup(popup);
+      if (entry.marker.getPopup()) entry.marker.setPopupContent(popup);
+      else entry.marker.bindPopup(popup);
     }
-    for (const [id, marker] of markers) if (!seen.has(id)) { map.removeLayer(marker); markers.delete(id); }
+    for (const [id, entry] of markers) if (!seen.has(id)) { map.removeLayer(entry.marker); markers.delete(id); headings.delete(id); }
 
     const updates = snapshot.feeds.tripUpdates;
     const now = Date.now() / 1000;

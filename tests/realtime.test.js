@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applyTripUpdates, epochToServiceMinutes, getVehicles, getAlerts, isFeedFresh, applyServiceAlerts } from '../js/realtime-core.js';
+import { applyTripUpdates, epochToServiceMinutes, getVehicles, getAlerts, isFeedFresh, applyServiceAlerts, trackVesselHeading, seededVesselHeading } from '../js/realtime-core.js';
 import { loadData } from '../js/data.js';
 import { findOptions, getArrival } from '../js/routing.js';
 import { setRealtimeSnapshot } from '../js/realtime.js';
@@ -71,6 +71,34 @@ test('vessel positions expire independently and unknown routes/invalid GPS are e
   assert.deepEqual(getVehicles(vehicles, { first: sampleTrip }, { R: {} }, NOW).map(v => v.id), ['good']);
   assert.equal(getVehicles({ ...vehicles, timestamp: NOW - 91 }, {}, { R: {} }, NOW).length, 0);
   assert.equal(isFeedFresh({ status: 'ok', timestamp: NOW, entities: [] }, 'vehicles', NOW), true);
+});
+
+test('vessel headings derive from movement, hold when moored, and prefer feed bearing', () => {
+  const history = new Map();
+  const boat = (lat, lng, bearing) => ({ id: 'H1', lat, lng, bearing });
+  assert.equal(trackVesselHeading(history, boat(40.7, -74, undefined)), null); // first sighting: heading unknown
+  const east = trackVesselHeading(history, boat(40.7, -73.99, undefined)); // ~840m eastward
+  assert.ok(east > 85 && east < 95, `expected ~90°, got ${east}`);
+  assert.equal(trackVesselHeading(history, boat(40.7, -73.99001, undefined)), east); // sub-threshold drift keeps heading
+  const south = trackVesselHeading(history, boat(40.695, -73.99001, undefined)); // ~560m southward
+  assert.ok(south > 175 && south < 185, `expected ~180°, got ${south}`);
+  assert.equal(trackVesselHeading(history, boat(40.6949, -73.99001, 42)), 42); // feed bearing wins when present
+  assert.equal(trackVesselHeading(new Map(), boat(40.7, -74, 42)), 42); // feed bearing works on first sighting
+});
+
+test('first-sighting heading seeds from the nearest leg of the vessel trip', () => {
+  const trip = { t: 'x', stops: [{ id: 'A' }, { id: 'B' }, { id: 'C' }] };
+  const stops = { A: { lat: 40.7, lng: -74.02 }, B: { lat: 40.7, lng: -74.0 }, C: { lat: 40.71, lng: -73.99 } };
+  const mid = { id: 'H1', lat: 40.7, lng: -74.01, bearing: undefined };
+  const east = trackVesselHeading(new Map(), mid, seededVesselHeading(mid, trip, stops)); // midway on leg A→B
+  assert.ok(east > 85 && east < 95, `expected ~90°, got ${east}`);
+  const atB = { id: 'H2', lat: 40.7005, lng: -74.0, bearing: undefined };
+  const northeast = trackVesselHeading(new Map(), atB, seededVesselHeading(atB, trip, stops)); // closer to leg B→C than endpoint B
+  assert.ok(northeast > 30 && northeast < 45, `expected ~37°, got ${northeast}`);
+  assert.equal(seededVesselHeading(mid, undefined, stops), null); // unknown trip stays unseeded
+  const moored = new Map();
+  trackVesselHeading(moored, atB, northeast);
+  assert.equal(trackVesselHeading(moored, atB, 0), northeast); // once heading is known, later seeds don't override it
 });
 
 test('service alerts respect active periods, route scope, and English translations', () => {

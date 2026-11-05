@@ -80,6 +80,45 @@ export function getVehicles(feed, tripsById, routes, now = Date.now() / 1000) {
       tripId: v.trip?.tripId || '', lat: p.latitude, lng: p.longitude, bearing: p.bearing, timestamp }];
   });
 }
+// The vehicle feed never sets position.bearing, so heading must be derived from movement between reports.
+function bearingBetween(from, to) {
+  const rad = deg => deg * Math.PI / 180, dLng = rad(to.lng - from.lng);
+  return (Math.atan2(Math.sin(dLng) * Math.cos(rad(to.lat)),
+    Math.cos(rad(from.lat)) * Math.sin(rad(to.lat)) - Math.sin(rad(from.lat)) * Math.cos(rad(to.lat)) * Math.cos(dLng)) * 180 / Math.PI + 360) % 360;
+}
+function metersBetween(from, to) {
+  const midLat = (from.lat + to.lat) / 2 * Math.PI / 180;
+  return Math.hypot((to.lat - from.lat) * 111320, (to.lng - from.lng) * 111320 * Math.cos(midLat));
+}
+export const HEADING_MIN_METERS = 20; // GPS drift while moored stays below this; an underway ferry covers >80m per 30s report
+export function trackVesselHeading(history, vehicle, seed = null) {
+  const previous = history.get(vehicle.id);
+  const bearing = Number.isFinite(vehicle.bearing) ? vehicle.bearing
+    : previous && metersBetween(previous, vehicle) >= HEADING_MIN_METERS ? bearingBetween(previous, vehicle)
+    : Number.isFinite(previous?.bearing) ? previous.bearing : seed;
+  history.set(vehicle.id, { lat: vehicle.lat, lng: vehicle.lng, bearing });
+  return Number.isFinite(bearing) ? bearing : null;
+}
+// First-sighting heading: project the vessel onto the nearest leg of its own trip sequence.
+// A boat moored at a slip berths bow-in ~90° to the dock face, which is why docked orientation
+// must never be derived from geometry; the leg still gives the direction of travel.
+function legMeters(point, a, b) {
+  const k = 111320 * Math.cos(point.lat * Math.PI / 180);
+  const ax = (a.lng - point.lng) * k, ay = (a.lat - point.lat) * 111320;
+  const bx = (b.lng - point.lng) * k, by = (b.lat - point.lat) * 111320;
+  const dx = bx - ax, dy = by - ay, lenSq = dx * dx + dy * dy;
+  const t = lenSq ? Math.max(0, Math.min(1, (-ax * dx - ay * dy) / lenSq)) : 0;
+  return Math.hypot(ax + t * dx, ay + t * dy);
+}
+export function seededVesselHeading(vehicle, trip, stopCoords) {
+  const points = (trip?.stops || []).flatMap(s => { const p = stopCoords[s.id]; return Number.isFinite(p?.lat) && Number.isFinite(p?.lng) ? [p] : []; });
+  let leg = null, nearest = Infinity;
+  for (let i = 0; i + 1 < points.length; i++) {
+    const dist = legMeters(vehicle, points[i], points[i + 1]);
+    if (dist < nearest) { nearest = dist; leg = [points[i], points[i + 1]]; }
+  }
+  return leg ? bearingBetween(leg[0], leg[1]) : null;
+}
 const translated = value => value?.translation?.find(t => !t.language || t.language.startsWith('en'))?.text || value?.translation?.[0]?.text || '';
 export function getAlerts(feed, routeIds = [], now = Date.now() / 1000, stopIds = [], aliases = {}) {
   if (!isFeedFresh(feed, 'alerts', now)) return [];
