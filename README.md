@@ -19,6 +19,7 @@ A lightweight, no-framework trip planner for the NYC Ferry system. Plan routes a
 - **Depart at / Arrive by** mode
 - **Interactive map** with route highlighting, stop popups, and clickable A/B markers
 - **Mobile-friendly** — responsive layout with map overlay and touch-optimized controls
+- **Your location** — map button and Settings retry restore the blue dot after permissions change, with iPhone/Android help for blocked access
 - **Persists search state** in localStorage across sessions
 
 </td>

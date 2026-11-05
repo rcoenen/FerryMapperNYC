@@ -1,15 +1,15 @@
 // Settings drawer, map style switching, time format, geolocation
 
-import { state, subscribeState, TIME_FMT_KEY, STYLE_STORAGE_KEY, LOC_STORAGE_KEY, TRANSFER_TIME_KEY, setMapStyle, setGeolocation, clearGeolocation, setTransferTime } from './state.js';
+import { state, subscribeState, TIME_FMT_KEY, STYLE_STORAGE_KEY, TRANSFER_TIME_KEY, setMapStyle, setTransferTime } from './state.js';
 import { map, MAP_STYLES, createTileLayer } from './map-core.js';
 import { applyDateTimeInputMode, syncLocaleFormatClass, syncDateTimeButton, refreshModalDisplay } from './datetime-input.js';
 import { openTransferModal } from './modals.js';
+import { initLocation } from './location.js';
 
 export function initSettings({ onTimeFormatChange }) {
   const settingsToggle = document.getElementById('settings-toggle');
   const settingsDrawer = document.getElementById('settings-drawer');
   const mapStyleSelect = document.getElementById('map-style-select');
-  const locationToggle = document.getElementById('location-toggle');
   const buildNumberEl = document.getElementById('build-number');
   const transferTimeRow = document.getElementById('transfer-time-row');
   const transferTimeDisplay = document.getElementById('transfer-time-display');
@@ -138,76 +138,9 @@ export function initSettings({ onTimeFormatChange }) {
     try { localStorage.setItem(STYLE_STORAGE_KEY, key); } catch {}
   });
 
-  // Geolocation
-  let geoWatchId = null;
-  let geoMarker = null;
-
-  function createGeoMarker(lat, lng) {
-    const icon = L.divIcon({
-      className: '',
-      html: '<div class="location-dot"><div class="location-dot-pulse"></div><div class="location-dot-inner"></div></div>',
-      iconSize: [16, 16],
-      iconAnchor: [8, 8]
-    });
-    return L.marker([lat, lng], { icon, interactive: false, zIndexOffset: 1000 }).addTo(map);
-  }
-
-  function clearGeoLocation() {
-    if (geoWatchId !== null) {
-      navigator.geolocation.clearWatch(geoWatchId);
-      geoWatchId = null;
-    }
-    if (geoMarker) {
-      map.removeLayer(geoMarker);
-      geoMarker = null;
-    }
-    clearGeolocation();
-  }
-
-  function enableGeolocation() {
-    if (!navigator.geolocation) {
-      locationToggle.checked = false;
-      try { localStorage.removeItem(LOC_STORAGE_KEY); } catch {}
-      return;
-    }
-    geoWatchId = navigator.geolocation.watchPosition(
-      (pos) => {
-        const { latitude, longitude } = pos.coords;
-        if (geoMarker) {
-          geoMarker.setLatLng([latitude, longitude]);
-        } else {
-          geoMarker = createGeoMarker(latitude, longitude);
-          setGeolocation(geoMarker, geoWatchId);
-        }
-      },
-      (err) => {
-        locationToggle.checked = false;
-        clearGeoLocation();
-        try { localStorage.removeItem(LOC_STORAGE_KEY); } catch {}
-        if (err.code === err.PERMISSION_DENIED) {
-          alert('Location access was denied. To re-enable it, click the lock/settings icon in your browser\'s address bar and allow location access, then try again.');
-        }
-      },
-      { enableHighAccuracy: true, maximumAge: 10000 }
-    );
-  }
-
-  locationToggle.addEventListener('change', () => {
-    if (locationToggle.checked) {
-      try { localStorage.setItem(LOC_STORAGE_KEY, '1'); } catch {}
-      enableGeolocation();
-    } else {
-      try { localStorage.removeItem(LOC_STORAGE_KEY); } catch {}
-      clearGeoLocation();
-    }
-  });
+  initLocation();
 
   try {
-    if (localStorage.getItem(LOC_STORAGE_KEY) === '1') {
-      locationToggle.checked = true;
-      enableGeolocation();
-    }
-    
     // Load transfer time from localStorage
     const savedTransferTime = localStorage.getItem(TRANSFER_TIME_KEY);
     if (savedTransferTime !== null) {

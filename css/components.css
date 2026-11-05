@@ -23,6 +23,8 @@
   top: 100%;
   right: 12px;
   width: 240px;
+  max-height: calc(100dvh - 80px);
+  overflow-y: auto;
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
@@ -180,6 +182,27 @@
 .location-toggle:checked { background: #4285F4; }
 .location-toggle:checked::after { transform: translateX(20px); }
 .location-toggle:focus-visible { box-shadow: 0 0 0 3px rgba(66,133,244,0.3); }
+
+.location-status { font-size: 12px; line-height: 1.45; color: #60717f; }
+.location-action {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #cdd8e4;
+  border-radius: 9px;
+  background: #f0f5ff;
+  color: #245aaa;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.location-action:hover { background: #e2edff; }
+.location-action:disabled { opacity: .6; cursor: wait; }
+.location-help { min-height: 32px; align-self: flex-start; }
+.location-dialog { margin: auto; padding: 0; border: 0; border-radius: 14px; width: min(440px, calc(100% - 32px)); max-height: calc(100dvh - 32px); }
+.location-dialog::backdrop { background: rgba(10, 15, 35, .6); }
+.location-dialog .modal-card { width: 100%; max-height: calc(100dvh - 32px); }
+.location-dialog .location-action { width: 100%; }
 
 /* --- Brand button --- */
 .brand-btn {

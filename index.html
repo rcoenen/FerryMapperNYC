@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="85">
+<meta name="app-build" content="86">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.15.0/dist/maplibre-gl.css" />
@@ -121,7 +121,7 @@
       const moduleNames = [
         'config', 'data', 'datetime-input', 'directions', 'dom', 'errors',
         'map-core', 'modals', 'route-drawing', 'route-geometry', 'routing', 'settings', 'sheet',
-        'state', 'time-utils', 'realtime-core', 'realtime', 'realtime-view'
+        'state', 'time-utils', 'realtime-core', 'realtime', 'realtime-view', 'location'
       ];
       const imports = {};
       for (const name of moduleNames) {
@@ -172,6 +172,9 @@
         <span>Show My Location</span>
         <input type="checkbox" id="location-toggle" class="location-toggle">
       </label>
+      <p id="location-status" class="location-status" role="status">Show the blue dot on the map.</p>
+      <button id="location-retry" class="location-action" type="button">Use my location</button>
+      <button id="location-help" class="modal-link-btn location-help" type="button">Location help</button>
     </div>
     <div class="settings-section">
       <button id="transfer-time-row" class="settings-value-row" type="button">
@@ -179,10 +182,24 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">85</code>
+      Build: <code id="build-number">86</code>
     </div>
   </div>
 </header>
+
+<dialog id="location-dialog" class="location-dialog" aria-labelledby="location-dialog-title" aria-describedby="location-dialog-message">
+  <div class="modal-card">
+    <button id="location-dialog-close" class="modal-close" type="button" aria-label="Close location help">&times;</button>
+    <h2 id="location-dialog-title">Enable your location</h2>
+    <p id="location-dialog-message">Allow location access to show your blue dot. If access is blocked, change your browser permissions, then try again.</p>
+    <div id="location-permission-help">
+      <p><strong>iPhone or iPad</strong><br>In Safari, open the Page Menu → Website Settings → Location and choose Ask or Allow. Also check Settings → Privacy &amp; Security → Location Services for your browser.</p>
+      <p><strong>Android Chrome</strong><br>Tap the site information icon beside the address → Permissions → Location and allow access. Check that your phone’s location is on too.</p>
+      <p><strong>Other browsers</strong><br>Open the site permissions beside the address and allow Location.</p>
+    </div>
+    <button id="location-dialog-retry" class="location-action" type="button">Try location again</button>
+  </div>
+</dialog>
 
 <div id="about-modal" class="modal-backdrop" hidden>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="about-title">

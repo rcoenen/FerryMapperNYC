@@ -38,6 +38,13 @@
 #map-overlay.open .map-close-btn { display: flex; align-items: center; justify-content: center; }
 
 /* --- Geolocation blue dot --- */
+.leaflet-control.location-control { border: 1px solid #d3dde4; border-radius: 10px; box-shadow: 0 2px 7px rgba(15,35,50,.18); overflow: hidden; }
+.location-map-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: #fff; color: #506576; cursor: pointer; }
+.location-map-btn[data-state="active"] { color: #4285f4; background: #edf4ff; }
+.location-map-btn[data-state="blocked"] { color: #a16421; }
+.location-map-btn[data-state="loading"] { color: #4285f4; animation: location-loading 1s ease-in-out infinite alternate; }
+.location-map-btn:focus-visible { outline-offset: -4px; }
+@keyframes location-loading { to { opacity: .4; } }
 .location-dot {
   width: 16px;
   height: 16px;
