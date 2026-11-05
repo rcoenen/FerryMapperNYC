@@ -3,6 +3,8 @@
 import { CONFIG } from './config.js';
 
 export let stops, routes, graph, routeStopSequences, services, schedules;
+export let stopAliases = {};
+export let metadata = null;
 export let stopById = {};
 export let routeById = {};
 export let schedulesByRoute = {};
@@ -30,6 +32,8 @@ export async function loadData() {
 
   ({ stops, routes, graph, routeStopSequences, services, schedules } = data);
 
+  stopAliases = data.stopAliases || {};
+  metadata = data.metadata || null;
   stopById = {};
   stops.forEach(s => stopById[s.id] = s);
   routeById = {};

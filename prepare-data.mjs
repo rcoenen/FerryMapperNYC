@@ -413,6 +413,7 @@ async function main() {
         seen.add(cid);
         tripStops.push({
           id: cid,
+          sequence: Number(st.stop_sequence),
           arr: st.arrival_time,
           dep: st.departure_time
         });
@@ -434,6 +435,8 @@ async function main() {
 
   // Build final output
   const output = {
+    metadata: { generatedAt: new Date().toISOString(), source: GTFS_URL },
+    stopAliases: stopIdToCanonical,
     stops: outputStops,
     routes: Object.values(routes),
     graph,

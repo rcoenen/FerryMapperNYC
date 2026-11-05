@@ -3,6 +3,7 @@
 import { stopById, schedules } from './data.js';
 import { timeToMin, serviceRunsOn, shiftDate } from './time-utils.js';
 import { state } from './state.js';
+import { getRealtimeTrip, getRealtimeVersion } from './realtime.js';
 
 /**
  * @typedef {Object} RouteLeg
@@ -16,13 +17,18 @@ import { state } from './state.js';
  * @property {number} rideMin
  * @property {any[]} tripStops
  * @property {string} toward
+ * @property {boolean} realtime
+ * @property {boolean} realtimeDeparture
+ * @property {boolean} realtimeArrival
+ * @property {number} delayMin
  */
 
 let timetableCache = null;
 let journeyCache = null;
 
 function getTimetable(dateStr) {
-  if (timetableCache?.source === schedules && timetableCache.dateStr === dateStr) {
+  const version = getRealtimeVersion();
+  if (timetableCache?.source === schedules && timetableCache.dateStr === dateStr && timetableCache.version === version) {
     return timetableCache.boardings;
   }
 
@@ -33,21 +39,20 @@ function getTimetable(dateStr) {
     const serviceDate = shiftDate(dateStr, dayOffset);
     for (const trip of schedules) {
       if (!serviceRunsOn(trip.s, serviceDate)) continue;
-      const times = trip.stops.map(s => ({
-        arr: timeToMin(s.arr) + dayOffset * 1440,
-        dep: timeToMin(s.dep) + dayOffset * 1440,
-      }));
-      const activeTrip = { ...trip, times, serviceDate };
-      for (let i = 0; i < trip.stops.length - 1; i++) {
+      const resolved = getRealtimeTrip(trip, serviceDate);
+      if (!resolved || resolved.stops.length < 2) continue;
+      const times = resolved.times.map(t => ({ ...t, arr: t.arr + dayOffset * 1440, dep: t.dep + dayOffset * 1440 }));
+      const activeTrip = { ...resolved, times, serviceDate, dayOffset };
+      for (let i = 0; i < resolved.stops.length - 1; i++) {
         if (times[i].dep < 0) continue;
-        const stopId = trip.stops[i].id;
+        const stopId = resolved.stops[i].id;
         if (!boardings.has(stopId)) boardings.set(stopId, []);
         boardings.get(stopId).push({ trip: activeTrip, index: i, dep: times[i].dep });
       }
     }
   }
   for (const events of boardings.values()) events.sort((a, b) => a.dep - b.dep);
-  timetableCache = { source: schedules, dateStr, boardings };
+  timetableCache = { source: schedules, dateStr, version, boardings };
   return boardings;
 }
 
@@ -114,6 +119,10 @@ function findJourney(boardings, fromId, toId, departure, transferTime) {
       serviceDate: trip.serviceDate,
       stops: tripStops.map(s => s.id),
       depTime, arrTime,
+      realtime: trip.times[boardIdx].realtimeDeparture || trip.times[alightIdx].realtimeArrival,
+      realtimeDeparture: trip.times[boardIdx].realtimeDeparture,
+      realtimeArrival: trip.times[alightIdx].realtimeArrival,
+      delayMin: trip.times[boardIdx].dep - timeToMin(trip.stops[boardIdx].dep) - trip.dayOffset * 1440,
       waitMin: best.prev.boardings ? depTime - best.prev.time : null,
       rideMin: arrTime - depTime,
       tripStops,
@@ -126,7 +135,7 @@ function findJourney(boardings, fromId, toId, departure, transferTime) {
 
 function getJourneys(fromId, toId, dateStr) {
   const transferTime = state.transferTime;
-  const key = JSON.stringify([fromId, toId, dateStr, transferTime]);
+  const key = JSON.stringify([fromId, toId, dateStr, transferTime, getRealtimeVersion()]);
   if (journeyCache?.source === schedules && journeyCache.key === key) return journeyCache.journeys;
 
   const boardings = getTimetable(dateStr);

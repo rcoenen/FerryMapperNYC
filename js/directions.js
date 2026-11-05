@@ -41,6 +41,12 @@ function renderLegs(resolvedLegs) {
       `</div>`;
 
     html += `<div class="tl-leg" style="color:${route.color}">`;
+    const liveLabel = leg.realtime
+      ? (leg.realtimeDeparture && leg.realtimeArrival ? 'Live times' : leg.realtimeDeparture ? 'Live departure' : 'Live arrival')
+      : 'Timetable';
+    const delayLabel = leg.realtimeDeparture && Math.abs(leg.delayMin) >= 1
+      ? ` · ${Math.round(Math.abs(leg.delayMin))} min ${leg.delayMin > 0 ? 'late' : 'early'}` : '';
+    html += `<div class="tl-live ${leg.realtime ? 'is-live' : ''}">${liveLabel}${delayLabel}</div>`;
     html += `<div class="tl-route">` +
       `<span class="tl-route-badge" style="background:${route.color};color:${isLightColor(route.color) ? '#243746' : '#fff'}">\u26F4 ${route.name}</span>` +
       (leg.toward && leg.toward !== alightStop ? `<br><span class="tl-route-dir">Direction: ${leg.toward}</span>` : '') +

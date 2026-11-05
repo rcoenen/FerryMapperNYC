@@ -11,10 +11,11 @@ A lightweight, no-framework trip planner for the NYC Ferry system. Plan routes a
 
 ## Features
 
-- **Route planning** across 39 ferry stops and 7 active routes
-- **Schedule-aware** — uses real GTFS departure/arrival times
+- **Route planning** across all active ferry routes
+- **Live service** — official boat positions, delay-adjusted connections, trip cancellations, and service alerts, checked every 30 seconds
+- **Schedule-aware** — uses real GTFS departure/arrival times, with explicit timetable fallback when live data is missing or stale
 - **Transfer optimization** — configurable minimum transfer time (5 minutes by default), finds fastest connections
-- **3 trip options** with Earlier/Requested/Later tabs and navigation
+- **3 trip options** with Earlier/Best/Later tabs and navigation
 - **Depart at / Arrive by** mode
 - **Interactive map** with route highlighting, stop popups, and clickable A/B markers
 - **Mobile-friendly** — responsive layout with map overlay and touch-optimized controls
@@ -56,11 +57,21 @@ npm run lint          # syntax checks for all application modules
 
 ## Data
 
-The `data/ferry-data.json` file contains:
-- **39 ferry stops**
-- **7 active routes** (Astoria, East River, Rockaway East, Rockaway-Soundview, Rockaway West, South Brooklyn, St. George)
-- **503 trip schedules** with full stop times
-- Pre-built routing graph with edges from all trip patterns per route
+The official GTFS timetable is downloaded daily by GitHub Actions and validated before publishing. `data/ferry-data.json` includes stops, routes, service calendars, trip schedules, original stop-ID mappings, stop sequences, and a refresh timestamp.
+
+Live feeds come from [NYC Ferry's developer feeds](https://www.ferry.nyc/developer-tools/). The relay in `realtime-relay/` decodes GTFS-Realtime and makes it readable by the GitHub Pages frontend; its responses are cached for 20 seconds. The client polls every 30 seconds while visible. Boat positions and trip predictions expire after 90 seconds; alerts after 10 minutes. Empty feeds are a valid result and never produce estimated boat positions.
+
+Matching trip updates adjust routing for their service date. Cancelled/deleted trips and skipped stops are excluded; stop delays propagate until overridden or marked NO_DATA. Structured NO_SERVICE alerts exclude affected routes, trips, or landings during their reported active periods. Other notices are displayed for affected routes/stops; free text is not automatically interpreted as a cancellation. Added/unscheduled trips without a matching static schedule are not routed.
+
+To deploy the relay to the configured Cloudflare account:
+
+```bash
+npx cf auth login
+npm run live:build
+npm run live:deploy
+```
+
+Set `CONFIG.REALTIME_URL` in `js/config.js` to the deployed Worker's `/v1/live` URL. The frontend remains a static site with no build step. The Worker uses the official `gtfs-realtime-bindings` decoder and a separate Vite workspace; it does not serve the site's source files.
 
 ## License
 

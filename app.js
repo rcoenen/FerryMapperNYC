@@ -17,6 +17,8 @@ import {
 import { initModals, closeAboutModal, closeNerdModal, closeDateModal, closeTransferModal } from './js/modals.js';
 import { initSheet, isMobile, setSheetSnap, openMapOverlay, closeMapOverlay } from './js/sheet.js';
 import { initSettings } from './js/settings.js';
+import { startRealtime, subscribeRealtime } from './js/realtime.js';
+import { initRealtimeView } from './js/realtime-view.js';
 import { initDOM, getEl, getAll } from './js/dom.js';
 import { initErrorHandling, wrapAsync, AppError } from './js/errors.js';
 
@@ -378,3 +380,19 @@ initSettings({
   history.replaceState(null, '', window.location.pathname);
   goBtn.click();
 })();
+
+// Apply changed live predictions without resetting the user's map view.
+initRealtimeView();
+subscribeRealtime(() => {
+  const search = state.lastSearch;
+  if (!search) return;
+  const { fromId, toId, dateStr, startMin, mode } = search;
+  const options = findOptions(fromId, toId, dateStr, startMin, mode);
+  const signature = opts => JSON.stringify(opts?.map(legs => legs?.map(l => [l.tripId, l.depTime, l.arrTime, l.realtime, l.stops])));
+  if (signature(options) === signature(state.currentOptions)) return;
+  const active = options[1] ? 1 : options.findIndex(isComplete);
+  if (active >= 0) showRoute(options[active], { fitBounds: false });
+  else clearHighlights();
+  showDirections(options, fromId, toId, Math.max(0, active));
+});
+startRealtime();

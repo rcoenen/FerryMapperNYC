@@ -7,13 +7,20 @@
   "scripts": {
     "prepare-data": "node prepare-data.mjs",
     "start": "npx serve .",
-    "lint": "node --check app.js && node --check prepare-data.mjs && for file in js/*.js; do node --check \"$file\" || exit 1; done",
-    "test": "node --test"
+    "lint": "node --check app.js && node --check prepare-data.mjs && for file in js/*.js; do node --check \"$file\" || exit 1; done && node --check realtime-relay/worker.js",
+    "test": "node --test",
+    "live:build": "npm run build --workspace ferrymappernyc-live",
+    "live:deploy": "npm run deploy --workspace ferrymappernyc-live"
   },
   "dependencies": {
+    "gtfs-realtime-bindings": "^2.2.0",
     "unzipper": "^0.12.3"
   },
   "devDependencies": {
+    "cf": "^1.0.0-beta.27",
     "typescript": "^5.3.0"
-  }
+  },
+  "workspaces": [
+    "realtime-relay"
+  ]
 }

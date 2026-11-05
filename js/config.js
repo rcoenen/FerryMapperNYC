@@ -1,6 +1,8 @@
 // FerryMapperNYC - Documented configuration constants
 
 export const CONFIG = {
+  REALTIME_URL: 'https://ferrymappernyc-live.coenen-rob.workers.dev/v1/live',
+
   // === Routing Algorithm ===
   MIN_TRANSFER_TIME_MIN: 5,       // Minimum transfer time between ferries (minutes)
   

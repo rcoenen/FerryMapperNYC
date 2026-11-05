@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="83">
+<meta name="app-build" content="84">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.15.0/dist/maplibre-gl.css" />
@@ -121,7 +121,7 @@
       const moduleNames = [
         'config', 'data', 'datetime-input', 'directions', 'dom', 'errors',
         'map-core', 'modals', 'route-drawing', 'route-geometry', 'routing', 'settings', 'sheet',
-        'state', 'time-utils'
+        'state', 'time-utils', 'realtime-core', 'realtime', 'realtime-view'
       ];
       const imports = {};
       for (const name of moduleNames) {
@@ -179,7 +179,7 @@
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">83</code>
+      Build: <code id="build-number">84</code>
     </div>
   </div>
 </header>
@@ -211,7 +211,7 @@
     <button id="nerd-close" class="modal-close" type="button" aria-label="Close dialog">&times;</button>
     <h2 id="nerd-title">You Asked For It: Nerd Mode</h2>
     <p>
-      No React. No build step. No server. Just vanilla ES modules that do everything in the browser.
+      Vanilla ES modules plan your trip in the browser. A small relay connects the official live ferry feeds to this app.
     </p>
     <p>
       <strong>Routing</strong> searches actual ferry departures and connections across the timetable. Depart-at searches find the earliest arrival; arrive-by searches find the latest departure that meets your deadline. When departure and arrival times match, fewer transfers win. Transfer buffers apply when changing ferries, and the map and directions use the stops served by your selected trip.
@@ -223,7 +223,7 @@
       <strong>Three options</strong> (Earlier / Best / Later) come from exact scheduled departures across the selected date. Trips overtaken by later ferries are removed, and navigation follows the remaining journeys without sampling times.
     </p>
     <p>
-      <strong>Data</strong> is pulled from NYC Ferry's public <strong><a href="https://en.wikipedia.org/wiki/GTFS" target="_blank">GTFS</a></strong> feed and baked into a single JSON file. No API keys, no rate limits, no surprises.
+      <strong>Data</strong> is pulled from NYC Ferry's public <strong><a href="https://en.wikipedia.org/wiki/GTFS" target="_blank">GTFS</a></strong> feed and baked into a single JSON file. The timetable refreshes daily. Live positions, trip predictions, and service alerts are checked every 30 seconds; stale reports expire automatically.
     </p>
     <p>
       The whole thing was prototyped with three AI coding agents &mdash; <strong>Codex</strong>, <strong>Claude Code</strong>, and <strong><a href="https://mistral.ai/products/vibe" target="_blank" rel="noopener">Mistral Vibe</a></strong> &mdash; competing on different approaches for the router, the UX, and the map rendering. The best ideas from each survived. The rest got <code>git reset --hard</code>.
@@ -261,6 +261,10 @@
           <button id="go-btn">Go</button>
         </div>
       </div>
+      <details id="live-panel" class="live-panel" data-state="loading">
+        <summary><span class="live-status-dot" aria-hidden="true"></span><span id="live-label" aria-live="polite">Checking live service…</span></summary>
+        <div id="live-content" class="live-content"></div>
+      </details>
       <div id="directions"></div>
       <div class="route-actions" id="route-actions">
         <button class="route-action-btn" id="clear-route-btn">New route</button>
