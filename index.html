@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rcoenen.github.io/FerryMapperNYC/img/og-image.png">
-<meta name="app-build" content="86">
+<meta name="app-build" content="87">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.15.0/dist/maplibre-gl.css" />
@@ -177,12 +177,18 @@
       <button id="location-help" class="modal-link-btn location-help" type="button">Location help</button>
     </div>
     <div class="settings-section">
+      <label class="settings-label location-label">
+        <span>Show live boats</span>
+        <input type="checkbox" id="live-boats-toggle" class="location-toggle" checked>
+      </label>
+    </div>
+    <div class="settings-section">
       <button id="transfer-time-row" class="settings-value-row" type="button">
         <span>Min. Transfer Time</span><span id="transfer-time-display">5 min</span>
       </button>
     </div>
     <div class="settings-version" aria-live="polite">
-      Build: <code id="build-number">86</code>
+      Build: <code id="build-number">87</code>
     </div>
   </div>
 </header>

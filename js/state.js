@@ -52,6 +52,7 @@ export const state = {
 
   // Preferences
   use12h: false,
+  showLiveBoats: true,
   transferTime: CONFIG.MIN_TRANSFER_TIME_MIN,
 
   // Map visualization
@@ -76,6 +77,7 @@ export const STORAGE_KEY = CONFIG.STORAGE_KEY;
 export const TIME_FMT_KEY = CONFIG.STORAGE_KEY_TIME_FMT;
 export const STYLE_STORAGE_KEY = CONFIG.STORAGE_KEY_STYLE;
 export const LOC_STORAGE_KEY = CONFIG.STORAGE_KEY_LOCATION;
+export const LIVE_BOATS_STORAGE_KEY = CONFIG.STORAGE_KEY_LIVE_BOATS;
 export const TRANSFER_TIME_KEY = CONFIG.STORAGE_KEY + '_transferTime';
 
 export function saveState() {
@@ -148,6 +150,11 @@ export function setActiveRouteIdx(idx) {
 export function setMapStyle(styleKey) {
   state.activeStyleKey = styleKey;
   notify('SET_MAP_STYLE', { styleKey });
+}
+
+export function setShowLiveBoats(visible) {
+  state.showLiveBoats = visible;
+  notify('SET_SHOW_LIVE_BOATS', { visible });
 }
 
 /**

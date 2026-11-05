@@ -29,7 +29,7 @@ export function initRealtimeView() {
     const allVehicles = getVehicles(snapshot.feeds.vehicles, tripsById, routeById);
     const vehicles = allVehicles.filter(v => !selectedRoutes.length || selectedRoutes.includes(v.routeId));
     const seen = new Set();
-    for (const vehicle of vehicles) {
+    for (const vehicle of state.showLiveBoats ? vehicles : []) {
       seen.add(vehicle.id);
       let marker = markers.get(vehicle.id);
       if (!marker) {
@@ -55,15 +55,18 @@ export function initRealtimeView() {
     const alerts = getAlerts(snapshot.feeds.alerts, selectedRoutes.length ? selectedRoutes : Object.keys(routeById), Date.now() / 1000, selectedStops.length ? selectedStops : Object.keys(stopById), stopAliases);
     panel.dataset.state = alerts.length ? 'alert' : live ? 'live' : fresh ? 'scheduled' : 'unavailable';
     label.textContent = vehicles.length ? `${vehicles.length} live boat${vehicles.length === 1 ? '' : 's'}` : hasUpdates ? 'Live trip updates' : snapshot.status === 'loading' ? 'Checking live service…' : fresh ? 'Timetable · live feed checked' : 'Timetable · live unavailable';
+    if (vehicles.length && !state.showLiveBoats) label.textContent += ' · hidden';
     if (alerts.length) label.textContent = `${alerts.length} service alert${alerts.length === 1 ? '' : 's'} · ${label.textContent}`;
     const body = [];
-    body.push(textElement('p', live
-      ? `${vehicles.length ? 'Boat positions are live now. ' : ''}Trip times marked Live use reported predictions; other times follow the timetable.`
-      : fresh ? 'No current live positions or trip predictions are available. Trip times follow the timetable.'
-      : 'Live reports are unavailable or out of date. Trip times follow the timetable.'));
-    if (snapshot.status === 'unavailable' && fresh) body.push(textElement('p', 'Connection interrupted. Recent reports will disappear when they expire.'));
-    if (snapshot.checkedAt) body.push(textElement('small', `Last checked ${clock(snapshot.checkedAt)}`));
-    if (metadata?.generatedAt) body.push(textElement('small', `Timetable refreshed ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric' }).format(new Date(metadata.generatedAt))}`));
+    body.push(textElement('p', hasUpdates ? 'Live predictions update your trip times.'
+      : fresh ? 'Trip times currently follow the timetable.' : 'Live reports unavailable. Showing timetable times.'));
+    if (!state.showLiveBoats) body.push(textElement('p', 'Boat markers are hidden. Show them in Settings.'));
+    if (snapshot.status === 'unavailable' && fresh) body.push(textElement('p', 'Connection interrupted. Recent reports expire automatically.'));
+    const meta = document.createElement('div');
+    meta.className = 'live-meta';
+    if (snapshot.checkedAt) meta.append(textElement('small', `Checked ${clock(snapshot.checkedAt)}`));
+    if (metadata?.generatedAt) meta.append(textElement('small', `Timetable ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric' }).format(new Date(metadata.generatedAt))}`));
+    body.push(meta);
     for (const alert of alerts) {
       const notice = document.createElement('article');
       notice.className = 'live-alert';
@@ -71,13 +74,13 @@ export function initRealtimeView() {
       if (alert.description && alert.description !== alert.title) notice.append(textElement('p', alert.description));
       body.push(notice);
     }
-    const link = textElement('a', 'Official service alerts');
+    const link = textElement('a', 'Service alerts ↗');
     link.href = 'https://www.ferry.nyc/service-alerts/';
     link.target = '_blank'; link.rel = 'noopener';
     body.push(link);
     content.replaceChildren(...body);
   }
   subscribeRealtime(render);
-  subscribeState(action => { if (['SET_SEARCH_RESULT', 'SET_ACTIVE_ROUTE_IDX', 'CLEAR_SEARCH'].includes(action)) render(); });
+  subscribeState(action => { if (['SET_SEARCH_RESULT', 'SET_ACTIVE_ROUTE_IDX', 'CLEAR_SEARCH', 'SET_SHOW_LIVE_BOATS'].includes(action)) render(); });
   render();
 }

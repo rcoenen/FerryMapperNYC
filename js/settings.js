@@ -1,6 +1,6 @@
 // Settings drawer, map style switching, time format, geolocation
 
-import { state, subscribeState, TIME_FMT_KEY, STYLE_STORAGE_KEY, TRANSFER_TIME_KEY, setMapStyle, setTransferTime } from './state.js';
+import { state, subscribeState, TIME_FMT_KEY, STYLE_STORAGE_KEY, TRANSFER_TIME_KEY, LIVE_BOATS_STORAGE_KEY, setMapStyle, setTransferTime, setShowLiveBoats } from './state.js';
 import { map, MAP_STYLES, createTileLayer } from './map-core.js';
 import { applyDateTimeInputMode, syncLocaleFormatClass, syncDateTimeButton, refreshModalDisplay } from './datetime-input.js';
 import { openTransferModal } from './modals.js';
@@ -139,6 +139,14 @@ export function initSettings({ onTimeFormatChange }) {
   });
 
   initLocation();
+
+  const liveBoatsToggle = document.getElementById('live-boats-toggle');
+  try { setShowLiveBoats(localStorage.getItem(LIVE_BOATS_STORAGE_KEY) !== '0'); } catch {}
+  liveBoatsToggle.checked = state.showLiveBoats;
+  liveBoatsToggle.addEventListener('change', () => {
+    setShowLiveBoats(liveBoatsToggle.checked);
+    try { localStorage.setItem(LIVE_BOATS_STORAGE_KEY, liveBoatsToggle.checked ? '1' : '0'); } catch {}
+  });
 
   try {
     // Load transfer time from localStorage

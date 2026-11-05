@@ -19,6 +19,7 @@ export const CONFIG = {
   STORAGE_KEY: 'ferryMapperNYC',
   STORAGE_KEY_STYLE: 'ferryMapperNYCStyle',
   STORAGE_KEY_LOCATION: 'ferryMapperNYCLocation',
+  STORAGE_KEY_LIVE_BOATS: 'ferryMapperNYCLiveBoats',
   STORAGE_KEY_TIME_FMT: 'ferryMapperNYCTimeFmt',
   
   // === Shuttle Routes (to filter out) ===
