@@ -22,21 +22,30 @@ export function initRealtimeView() {
   const label = document.getElementById('live-label');
   const content = document.getElementById('live-content');
   const markers = new Map(); // vehicle id -> { marker, routeId }
-  const headings = new Map(); // vehicle id -> last position + derived bearing
+  const headings = new Map(); // vehicle id -> last position + derived bearing + breadcrumb trail
+  let selectedVehicleId = null;
+  let trailLine = null;
   const tripsById = Object.fromEntries(schedules.map(t => [t.t, t]));
+  function selectVehicle(id) {
+    selectedVehicleId = id;
+    render();
+  }
   function render() {
     const snapshot = getRealtimeSnapshot();
     const selectedRoutes = state.lastSearch ? (state.currentOptions[state.currentActiveIdx] || []).map(l => l.route) : [];
     const allVehicles = getVehicles(snapshot.feeds.vehicles, tripsById, routeById);
     const vehicles = allVehicles.filter(v => !selectedRoutes.length || selectedRoutes.includes(v.routeId));
+    const selected = vehicles.find(v => v.id === selectedVehicleId) || null;
+    if (selectedVehicleId && (!selected || !state.showLiveBoats)) selectedVehicleId = null; // boat expired or boats hidden
     const seen = new Set();
     for (const vehicle of vehicles) trackVesselHeading(headings, vehicle, seededVesselHeading(vehicle, tripsById[vehicle.tripId], stopById));
-    for (const vehicle of state.showLiveBoats ? vehicles : []) {
+    for (const vehicle of !state.showLiveBoats ? [] : selected ? [selected] : vehicles) {
       seen.add(vehicle.id);
       const heading = headings.get(vehicle.id)?.bearing;
       let entry = markers.get(vehicle.id);
       if (!entry) {
-        entry = { marker: L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle, heading), title: 'Live NYC Ferry', zIndexOffset: 500 }).addTo(map), routeId: vehicle.routeId };
+        entry = { marker: L.marker([vehicle.lat, vehicle.lng], { icon: vesselIcon(vehicle, heading), title: 'Live NYC Ferry', zIndexOffset: 500, bubblingMouseEvents: false }).addTo(map), routeId: vehicle.routeId };
+        entry.marker.on('click', () => selectVehicle(selectedVehicleId === vehicle.id ? null : vehicle.id));
         markers.set(vehicle.id, entry);
       } else {
         entry.marker.setLatLng([vehicle.lat, vehicle.lng]);
@@ -47,9 +56,16 @@ export function initRealtimeView() {
       }
       const popup = document.createElement('div');
       popup.append(textElement('strong', vehicle.label), textElement('p', routeById[vehicle.routeId].name), textElement('small', `Live position · reported ${clock(vehicle.timestamp)}`));
+      if (vehicle.id === selectedVehicleId) popup.append(textElement('small', 'Trail shown · click the boat or the water to see all boats'));
       if (entry.marker.getPopup()) entry.marker.setPopupContent(popup);
       else entry.marker.bindPopup(popup);
     }
+    const trailPoints = selected && state.showLiveBoats ? headings.get(selected.id)?.trail : null;
+    if (trailPoints?.length > 1) {
+      const color = routeById[selected.routeId].color;
+      if (!trailLine) trailLine = L.polyline(trailPoints, { color, weight: 3, opacity: 0.55, dashArray: '4 8' }).addTo(map);
+      else { trailLine.setLatLngs(trailPoints); trailLine.setStyle({ color }); }
+    } else if (trailLine) { map.removeLayer(trailLine); trailLine = null; }
     for (const [id, entry] of markers) if (!seen.has(id)) { map.removeLayer(entry.marker); markers.delete(id); headings.delete(id); }
 
     const updates = snapshot.feeds.tripUpdates;
@@ -70,6 +86,7 @@ export function initRealtimeView() {
     body.push(textElement('p', hasUpdates ? 'Live predictions update your trip times.'
       : fresh ? 'Trip times currently follow the timetable.' : 'Live reports unavailable. Showing timetable times.'));
     if (!state.showLiveBoats) body.push(textElement('p', 'Boat markers are hidden. Show them in Settings.'));
+    if (selectedVehicleId) body.push(textElement('p', 'Only this boat is shown, with its recent path. Click the boat or the water to show all boats.'));
     if (snapshot.status === 'unavailable' && fresh) body.push(textElement('p', 'Connection interrupted. Recent reports expire automatically.'));
     const meta = document.createElement('div');
     meta.className = 'live-meta';
@@ -89,6 +106,7 @@ export function initRealtimeView() {
     body.push(link);
     content.replaceChildren(...body);
   }
+  map.on('click', () => selectVehicle(null)); // markers don't bubble clicks, so this is water/land only
   subscribeRealtime(render);
   subscribeState(action => { if (['SET_SEARCH_RESULT', 'SET_ACTIVE_ROUTE_IDX', 'CLEAR_SEARCH', 'SET_SHOW_LIVE_BOATS'].includes(action)) render(); });
   render();

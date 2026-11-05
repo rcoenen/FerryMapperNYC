@@ -91,12 +91,16 @@ function metersBetween(from, to) {
   return Math.hypot((to.lat - from.lat) * 111320, (to.lng - from.lng) * 111320 * Math.cos(midLat));
 }
 export const HEADING_MIN_METERS = 20; // GPS drift while moored stays below this; an underway ferry covers >80m per 30s report
+export const TRAIL_MAX_POINTS = 240; // 30s reports ⇒ two hours of breadcrumbs
 export function trackVesselHeading(history, vehicle, seed = null) {
   const previous = history.get(vehicle.id);
+  const moved = previous ? metersBetween(previous, vehicle) : 0;
   const bearing = Number.isFinite(vehicle.bearing) ? vehicle.bearing
-    : previous && metersBetween(previous, vehicle) >= HEADING_MIN_METERS ? bearingBetween(previous, vehicle)
+    : moved >= HEADING_MIN_METERS ? bearingBetween(previous, vehicle)
     : Number.isFinite(previous?.bearing) ? previous.bearing : seed;
-  history.set(vehicle.id, { lat: vehicle.lat, lng: vehicle.lng, bearing });
+  const trail = previous?.trail || [[vehicle.lat, vehicle.lng]];
+  if (moved >= HEADING_MIN_METERS) { trail.push([vehicle.lat, vehicle.lng]); if (trail.length > TRAIL_MAX_POINTS) trail.shift(); }
+  history.set(vehicle.id, { lat: vehicle.lat, lng: vehicle.lng, bearing, trail });
   return Number.isFinite(bearing) ? bearing : null;
 }
 // First-sighting heading: project the vessel onto the nearest leg of its own trip sequence.

@@ -101,6 +101,20 @@ test('first-sighting heading seeds from the nearest leg of the vessel trip', () 
   assert.equal(trackVesselHeading(moored, atB, 0), northeast); // once heading is known, later seeds don't override it
 });
 
+test('vessel trails record breadcrumbs, ignore drift, and cap their length', () => {
+  const history = new Map();
+  const boat = (lat, lng) => ({ id: 'T1', lat, lng, bearing: undefined });
+  trackVesselHeading(history, boat(40.7, -74));
+  assert.deepEqual(history.get('T1').trail, [[40.7, -74]]); // first sighting starts the trail
+  trackVesselHeading(history, boat(40.7, -73.99)); // ~840m eastward
+  assert.deepEqual(history.get('T1').trail, [[40.7, -74], [40.7, -73.99]]);
+  trackVesselHeading(history, boat(40.7, -73.99001)); // drift < 20m adds nothing
+  assert.equal(history.get('T1').trail.length, 2);
+  for (let i = 0; i < 300; i++) trackVesselHeading(history, boat(40.7, -74 + i * 0.001));
+  assert.equal(history.get('T1').trail.length, 240); // TRAIL_MAX_POINTS
+  assert.deepEqual(history.get('T1').trail.at(-1), [40.7, -74 + 299 * 0.001]); // oldest points dropped first
+});
+
 test('service alerts respect active periods, route scope, and English translations', () => {
   const alert = (id, route, start, end) => ({ id, alert: {
     activePeriod: [{ start, end }], informedEntity: route ? [{ routeId: route }] : [],
