@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-11-26T16:42:37.198Z",
+    "generatedAt": "2026-11-27T16:28:54.675Z",
     "source": "https://nycferry.connexionz.net/rtt/public/utility/gtfs.aspx"
   },
   "stopAliases": {
@@ -2001,15 +2001,15 @@
   "graph": {
     "hunters-point-south": [
       {
-        "to": "greenpoint",
-        "route": "ER"
-      },
-      {
         "to": "east-34th-street",
         "route": "ER"
       },
       {
         "to": "north-williamsburg",
+        "route": "ER"
+      },
+      {
+        "to": "greenpoint",
         "route": "ER"
       }
     ],
@@ -2019,11 +2019,11 @@
         "route": "ER"
       },
       {
-        "to": "north-williamsburg",
+        "to": "greenpoint",
         "route": "ER"
       },
       {
-        "to": "greenpoint",
+        "to": "north-williamsburg",
         "route": "ER"
       }
     ],
@@ -2095,37 +2095,37 @@
     ],
     "greenpoint": [
       {
-        "to": "north-williamsburg",
-        "route": "ER"
-      },
-      {
-        "to": "hunters-point-south",
-        "route": "ER"
-      },
-      {
         "to": "south-williamsburg",
         "route": "ER"
       },
       {
         "to": "east-34th-street",
         "route": "ER"
+      },
+      {
+        "to": "north-williamsburg",
+        "route": "ER"
+      },
+      {
+        "to": "hunters-point-south",
+        "route": "ER"
       }
     ],
     "north-williamsburg": [
-      {
-        "to": "south-williamsburg",
-        "route": "ER"
-      },
-      {
-        "to": "greenpoint",
-        "route": "ER"
-      },
       {
         "to": "dumbo-fulton-ferry",
         "route": "ER"
       },
       {
         "to": "hunters-point-south",
+        "route": "ER"
+      },
+      {
+        "to": "south-williamsburg",
+        "route": "ER"
+      },
+      {
+        "to": "greenpoint",
         "route": "ER"
       }
     ],
@@ -2135,11 +2135,11 @@
         "route": "ER"
       },
       {
-        "to": "south-williamsburg",
+        "to": "north-williamsburg",
         "route": "ER"
       },
       {
-        "to": "north-williamsburg",
+        "to": "south-williamsburg",
         "route": "ER"
       }
     ],
@@ -2281,11 +2281,11 @@
         "route": "ER"
       },
       {
-        "to": "stuyvesant-cove",
+        "to": "sunset-park-bat",
         "route": "RS"
       },
       {
-        "to": "sunset-park-bat",
+        "to": "stuyvesant-cove",
         "route": "RS"
       },
       {
@@ -2439,11 +2439,11 @@
     ],
     "st-george": [
       {
-        "to": "battery-park-city-vesey-st",
+        "to": "bay-ridge",
         "route": "SG"
       },
       {
-        "to": "bay-ridge",
+        "to": "battery-park-city-vesey-st",
         "route": "SG"
       }
     ],
@@ -2569,23 +2569,6 @@
         1,
         1
       ],
-      "start": "20261126",
-      "end": "20261126",
-      "added": [
-        "20261126"
-      ],
-      "removed": []
-    },
-    "3": {
-      "days": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1
-      ],
       "start": "20261127",
       "end": "20271231",
       "added": [
@@ -2598,7 +2581,7 @@
       ],
       "removed": []
     },
-    "4": {
+    "3": {
       "days": [
         0,
         0,
@@ -2613,7 +2596,7 @@
       "added": [],
       "removed": []
     },
-    "5": {
+    "4": {
       "days": [
         0,
         0,
@@ -2630,4146 +2613,6 @@
     }
   },
   "schedules": [
-    {
-      "t": "45",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "09:55:00",
-          "dep": "09:55:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "10:05:00",
-          "dep": "10:05:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "10:17:00",
-          "dep": "10:17:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "10:27:00",
-          "dep": "10:27:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "10:36:00",
-          "dep": "10:36:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "10:44:00",
-          "dep": "10:44:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "10:48:00",
-          "dep": "10:48:00"
-        }
-      ]
-    },
-    {
-      "t": "46",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "11:07:00",
-          "dep": "11:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "11:17:00",
-          "dep": "11:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "11:29:00",
-          "dep": "11:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "11:39:00",
-          "dep": "11:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "11:48:00",
-          "dep": "11:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "11:56:00",
-          "dep": "11:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "12:00:00",
-          "dep": "12:00:00"
-        }
-      ]
-    },
-    {
-      "t": "50",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "12:07:00",
-          "dep": "12:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "12:17:00",
-          "dep": "12:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "12:29:00",
-          "dep": "12:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "12:39:00",
-          "dep": "12:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "12:48:00",
-          "dep": "12:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "12:56:00",
-          "dep": "12:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "13:00:00",
-          "dep": "13:00:00"
-        }
-      ]
-    },
-    {
-      "t": "52",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "13:07:00",
-          "dep": "13:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "13:17:00",
-          "dep": "13:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "13:29:00",
-          "dep": "13:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "13:39:00",
-          "dep": "13:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "13:48:00",
-          "dep": "13:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "13:56:00",
-          "dep": "13:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "14:00:00",
-          "dep": "14:00:00"
-        }
-      ]
-    },
-    {
-      "t": "55",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "14:07:00",
-          "dep": "14:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "14:17:00",
-          "dep": "14:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "14:29:00",
-          "dep": "14:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "14:39:00",
-          "dep": "14:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "14:48:00",
-          "dep": "14:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "14:56:00",
-          "dep": "14:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "15:00:00",
-          "dep": "15:00:00"
-        }
-      ]
-    },
-    {
-      "t": "74",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "15:07:00",
-          "dep": "15:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "15:17:00",
-          "dep": "15:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "15:29:00",
-          "dep": "15:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "15:39:00",
-          "dep": "15:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "15:48:00",
-          "dep": "15:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "15:56:00",
-          "dep": "15:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "16:00:00",
-          "dep": "16:00:00"
-        }
-      ]
-    },
-    {
-      "t": "75",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "16:07:00",
-          "dep": "16:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "16:17:00",
-          "dep": "16:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "16:29:00",
-          "dep": "16:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "16:39:00",
-          "dep": "16:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "16:48:00",
-          "dep": "16:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "16:56:00",
-          "dep": "16:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "17:00:00",
-          "dep": "17:00:00"
-        }
-      ]
-    },
-    {
-      "t": "76",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "17:07:00",
-          "dep": "17:07:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 2,
-          "arr": "17:17:00",
-          "dep": "17:17:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 3,
-          "arr": "17:29:00",
-          "dep": "17:29:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "17:39:00",
-          "dep": "17:39:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 5,
-          "arr": "17:48:00",
-          "dep": "17:48:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 6,
-          "arr": "17:56:00",
-          "dep": "17:56:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 7,
-          "arr": "18:00:00",
-          "dep": "18:00:00"
-        }
-      ]
-    },
-    {
-      "t": "77",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "10:04:00",
-          "dep": "10:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "10:12:00",
-          "dep": "10:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "10:21:00",
-          "dep": "10:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "10:31:00",
-          "dep": "10:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "10:40:00",
-          "dep": "10:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "10:54:00",
-          "dep": "10:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "10:58:00",
-          "dep": "10:58:00"
-        }
-      ]
-    },
-    {
-      "t": "78",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "10:52:00",
-          "dep": "10:52:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "11:00:00",
-          "dep": "11:00:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "11:09:00",
-          "dep": "11:09:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "11:19:00",
-          "dep": "11:19:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "11:28:00",
-          "dep": "11:28:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "11:42:00",
-          "dep": "11:42:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "11:46:00",
-          "dep": "11:46:00"
-        }
-      ]
-    },
-    {
-      "t": "79",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "12:04:00",
-          "dep": "12:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "12:12:00",
-          "dep": "12:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "12:21:00",
-          "dep": "12:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "12:31:00",
-          "dep": "12:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "12:40:00",
-          "dep": "12:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "12:54:00",
-          "dep": "12:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "12:58:00",
-          "dep": "12:58:00"
-        }
-      ]
-    },
-    {
-      "t": "80",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "13:04:00",
-          "dep": "13:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "13:12:00",
-          "dep": "13:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "13:21:00",
-          "dep": "13:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "13:31:00",
-          "dep": "13:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "13:40:00",
-          "dep": "13:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "13:54:00",
-          "dep": "13:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "13:58:00",
-          "dep": "13:58:00"
-        }
-      ]
-    },
-    {
-      "t": "81",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "14:04:00",
-          "dep": "14:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "14:12:00",
-          "dep": "14:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "14:21:00",
-          "dep": "14:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "14:31:00",
-          "dep": "14:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "14:40:00",
-          "dep": "14:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "14:54:00",
-          "dep": "14:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "14:58:00",
-          "dep": "14:58:00"
-        }
-      ]
-    },
-    {
-      "t": "82",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "15:04:00",
-          "dep": "15:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "15:12:00",
-          "dep": "15:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "15:21:00",
-          "dep": "15:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "15:31:00",
-          "dep": "15:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "15:40:00",
-          "dep": "15:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "15:54:00",
-          "dep": "15:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "15:58:00",
-          "dep": "15:58:00"
-        }
-      ]
-    },
-    {
-      "t": "83",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "16:04:00",
-          "dep": "16:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "16:12:00",
-          "dep": "16:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "16:21:00",
-          "dep": "16:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "16:31:00",
-          "dep": "16:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "16:40:00",
-          "dep": "16:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "16:54:00",
-          "dep": "16:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "16:58:00",
-          "dep": "16:58:00"
-        }
-      ]
-    },
-    {
-      "t": "84",
-      "s": "2",
-      "r": "ER",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "17:04:00",
-          "dep": "17:04:00"
-        },
-        {
-          "id": "hunters-point-south",
-          "sequence": 2,
-          "arr": "17:12:00",
-          "dep": "17:12:00"
-        },
-        {
-          "id": "greenpoint",
-          "sequence": 3,
-          "arr": "17:21:00",
-          "dep": "17:21:00"
-        },
-        {
-          "id": "north-williamsburg",
-          "sequence": 4,
-          "arr": "17:31:00",
-          "dep": "17:31:00"
-        },
-        {
-          "id": "south-williamsburg",
-          "sequence": 5,
-          "arr": "17:40:00",
-          "dep": "17:40:00"
-        },
-        {
-          "id": "dumbo-fulton-ferry",
-          "sequence": 6,
-          "arr": "17:54:00",
-          "dep": "17:54:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "17:58:00",
-          "dep": "17:58:00"
-        }
-      ]
-    },
-    {
-      "t": "85",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "10:02:00",
-          "dep": "10:02:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 2,
-          "arr": "10:16:00",
-          "dep": "10:16:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "10:25:00",
-          "dep": "10:25:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 4,
-          "arr": "10:37:00",
-          "dep": "10:37:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 5,
-          "arr": "10:56:00",
-          "dep": "10:56:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 6,
-          "arr": "10:59:00",
-          "dep": "10:59:00"
-        }
-      ]
-    },
-    {
-      "t": "86",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "11:08:00",
-          "dep": "11:08:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 2,
-          "arr": "11:22:00",
-          "dep": "11:22:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "11:31:00",
-          "dep": "11:31:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 4,
-          "arr": "11:43:00",
-          "dep": "11:43:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 5,
-          "arr": "12:02:00",
-          "dep": "12:02:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 6,
-          "arr": "12:05:00",
-          "dep": "12:05:00"
-        }
-      ]
-    },
-    {
-      "t": "87",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "11:08:00",
-          "dep": "11:08:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "11:50:00",
-          "dep": "11:50:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "12:11:00",
-          "dep": "12:11:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "12:25:00",
-          "dep": "12:25:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "12:34:00",
-          "dep": "12:34:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "12:46:00",
-          "dep": "12:46:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "13:05:00",
-          "dep": "13:05:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "13:08:00",
-          "dep": "13:08:00"
-        }
-      ]
-    },
-    {
-      "t": "88",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "12:14:00",
-          "dep": "12:14:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "12:56:00",
-          "dep": "12:56:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "13:17:00",
-          "dep": "13:17:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "13:31:00",
-          "dep": "13:31:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "13:40:00",
-          "dep": "13:40:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "13:52:00",
-          "dep": "13:52:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "14:11:00",
-          "dep": "14:11:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "14:14:00",
-          "dep": "14:14:00"
-        }
-      ]
-    },
-    {
-      "t": "89",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "13:20:00",
-          "dep": "13:20:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "14:02:00",
-          "dep": "14:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "14:23:00",
-          "dep": "14:23:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "14:37:00",
-          "dep": "14:37:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "14:46:00",
-          "dep": "14:46:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "14:58:00",
-          "dep": "14:58:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "15:17:00",
-          "dep": "15:17:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "15:20:00",
-          "dep": "15:20:00"
-        }
-      ]
-    },
-    {
-      "t": "90",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "14:26:00",
-          "dep": "14:26:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "15:08:00",
-          "dep": "15:08:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "15:29:00",
-          "dep": "15:29:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "15:43:00",
-          "dep": "15:43:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "15:52:00",
-          "dep": "15:52:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "16:04:00",
-          "dep": "16:04:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "16:23:00",
-          "dep": "16:23:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "16:26:00",
-          "dep": "16:26:00"
-        }
-      ]
-    },
-    {
-      "t": "91",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "15:32:00",
-          "dep": "15:32:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "16:14:00",
-          "dep": "16:14:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "16:35:00",
-          "dep": "16:35:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "16:49:00",
-          "dep": "16:49:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "16:58:00",
-          "dep": "16:58:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "17:10:00",
-          "dep": "17:10:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "17:29:00",
-          "dep": "17:29:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "17:32:00",
-          "dep": "17:32:00"
-        }
-      ]
-    },
-    {
-      "t": "92",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "16:38:00",
-          "dep": "16:38:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "17:20:00",
-          "dep": "17:20:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "17:41:00",
-          "dep": "17:41:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 4,
-          "arr": "17:55:00",
-          "dep": "17:55:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "18:04:00",
-          "dep": "18:04:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 6,
-          "arr": "18:16:00",
-          "dep": "18:16:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 7,
-          "arr": "18:35:00",
-          "dep": "18:35:00"
-        },
-        {
-          "id": "ferry-point-park",
-          "sequence": 8,
-          "arr": "18:38:00",
-          "dep": "18:38:00"
-        }
-      ]
-    },
-    {
-      "t": "93",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 1,
-          "arr": "17:44:00",
-          "dep": "17:44:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "18:26:00",
-          "dep": "18:26:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "18:39:00",
-          "dep": "18:39:00"
-        }
-      ]
-    },
-    {
-      "t": "94",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "10:00:00",
-          "dep": "10:00:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "10:18:00",
-          "dep": "10:18:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 3,
-          "arr": "10:57:00",
-          "dep": "10:57:00"
-        }
-      ]
-    },
-    {
-      "t": "95",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "11:06:00",
-          "dep": "11:06:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 2,
-          "arr": "11:24:00",
-          "dep": "11:24:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 3,
-          "arr": "12:03:00",
-          "dep": "12:03:00"
-        }
-      ]
-    },
-    {
-      "t": "96",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "11:05:00",
-          "dep": "11:05:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "11:13:00",
-          "dep": "11:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "11:32:00",
-          "dep": "11:32:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "11:46:00",
-          "dep": "11:46:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "11:53:00",
-          "dep": "11:53:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "12:12:00",
-          "dep": "12:12:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "12:30:00",
-          "dep": "12:30:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "13:09:00",
-          "dep": "13:09:00"
-        }
-      ]
-    },
-    {
-      "t": "97",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "12:11:00",
-          "dep": "12:11:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "12:19:00",
-          "dep": "12:19:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "12:38:00",
-          "dep": "12:38:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "12:52:00",
-          "dep": "12:52:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "12:59:00",
-          "dep": "12:59:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "13:18:00",
-          "dep": "13:18:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "13:36:00",
-          "dep": "13:36:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "14:15:00",
-          "dep": "14:15:00"
-        }
-      ]
-    },
-    {
-      "t": "98",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "13:14:00",
-          "dep": "13:14:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "13:22:00",
-          "dep": "13:22:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "13:41:00",
-          "dep": "13:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "13:55:00",
-          "dep": "13:55:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "14:02:00",
-          "dep": "14:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "14:21:00",
-          "dep": "14:21:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "14:39:00",
-          "dep": "14:39:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "15:18:00",
-          "dep": "15:18:00"
-        }
-      ]
-    },
-    {
-      "t": "99",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "14:20:00",
-          "dep": "14:20:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "14:28:00",
-          "dep": "14:28:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "14:47:00",
-          "dep": "14:47:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "15:01:00",
-          "dep": "15:01:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "15:08:00",
-          "dep": "15:08:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "15:27:00",
-          "dep": "15:27:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "15:45:00",
-          "dep": "15:45:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "16:24:00",
-          "dep": "16:24:00"
-        }
-      ]
-    },
-    {
-      "t": "100",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "15:26:00",
-          "dep": "15:26:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "15:34:00",
-          "dep": "15:34:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "15:53:00",
-          "dep": "15:53:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "16:07:00",
-          "dep": "16:07:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "16:14:00",
-          "dep": "16:14:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "16:33:00",
-          "dep": "16:33:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "16:51:00",
-          "dep": "16:51:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "17:30:00",
-          "dep": "17:30:00"
-        }
-      ]
-    },
-    {
-      "t": "101",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "16:32:00",
-          "dep": "16:32:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "16:40:00",
-          "dep": "16:40:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "16:59:00",
-          "dep": "16:59:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "17:13:00",
-          "dep": "17:13:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "17:20:00",
-          "dep": "17:20:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "17:39:00",
-          "dep": "17:39:00"
-        },
-        {
-          "id": "sunset-park-bat",
-          "sequence": 7,
-          "arr": "17:57:00",
-          "dep": "17:57:00"
-        },
-        {
-          "id": "beach-channel-dr-beach-108th-street",
-          "sequence": 8,
-          "arr": "18:36:00",
-          "dep": "18:36:00"
-        }
-      ]
-    },
-    {
-      "t": "102",
-      "s": "2",
-      "r": "RS",
-      "stops": [
-        {
-          "id": "ferry-point-park",
-          "sequence": 1,
-          "arr": "17:38:00",
-          "dep": "17:38:00"
-        },
-        {
-          "id": "soundview",
-          "sequence": 2,
-          "arr": "17:46:00",
-          "dep": "17:46:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 3,
-          "arr": "18:05:00",
-          "dep": "18:05:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 4,
-          "arr": "18:19:00",
-          "dep": "18:19:00"
-        },
-        {
-          "id": "stuyvesant-cove",
-          "sequence": 5,
-          "arr": "18:26:00",
-          "dep": "18:26:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "18:37:00",
-          "dep": "18:37:00"
-        }
-      ]
-    },
-    {
-      "t": "103",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "09:39:00",
-          "dep": "09:39:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "09:54:00",
-          "dep": "09:54:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "10:15:00",
-          "dep": "10:15:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "10:25:00",
-          "dep": "10:25:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "10:41:00",
-          "dep": "10:41:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "10:45:00",
-          "dep": "10:45:00"
-        }
-      ]
-    },
-    {
-      "t": "104",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "10:27:00",
-          "dep": "10:27:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "10:42:00",
-          "dep": "10:42:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "11:03:00",
-          "dep": "11:03:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "11:13:00",
-          "dep": "11:13:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "11:29:00",
-          "dep": "11:29:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "11:33:00",
-          "dep": "11:33:00"
-        }
-      ]
-    },
-    {
-      "t": "105",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "11:15:00",
-          "dep": "11:15:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "11:30:00",
-          "dep": "11:30:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "11:51:00",
-          "dep": "11:51:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "12:01:00",
-          "dep": "12:01:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "12:17:00",
-          "dep": "12:17:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "12:21:00",
-          "dep": "12:21:00"
-        }
-      ]
-    },
-    {
-      "t": "106",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "12:03:00",
-          "dep": "12:03:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "12:18:00",
-          "dep": "12:18:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "12:39:00",
-          "dep": "12:39:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "12:49:00",
-          "dep": "12:49:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "13:05:00",
-          "dep": "13:05:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "13:09:00",
-          "dep": "13:09:00"
-        }
-      ]
-    },
-    {
-      "t": "107",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "12:51:00",
-          "dep": "12:51:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "13:06:00",
-          "dep": "13:06:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "13:27:00",
-          "dep": "13:27:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "13:37:00",
-          "dep": "13:37:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "13:53:00",
-          "dep": "13:53:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "13:57:00",
-          "dep": "13:57:00"
-        }
-      ]
-    },
-    {
-      "t": "108",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "13:39:00",
-          "dep": "13:39:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "13:54:00",
-          "dep": "13:54:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "14:15:00",
-          "dep": "14:15:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "14:25:00",
-          "dep": "14:25:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "14:41:00",
-          "dep": "14:41:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "14:45:00",
-          "dep": "14:45:00"
-        }
-      ]
-    },
-    {
-      "t": "109",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "14:27:00",
-          "dep": "14:27:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "14:42:00",
-          "dep": "14:42:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "15:03:00",
-          "dep": "15:03:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "15:13:00",
-          "dep": "15:13:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "15:29:00",
-          "dep": "15:29:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "15:33:00",
-          "dep": "15:33:00"
-        }
-      ]
-    },
-    {
-      "t": "110",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "15:15:00",
-          "dep": "15:15:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "15:30:00",
-          "dep": "15:30:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "15:51:00",
-          "dep": "15:51:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "16:01:00",
-          "dep": "16:01:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "16:17:00",
-          "dep": "16:17:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "16:21:00",
-          "dep": "16:21:00"
-        }
-      ]
-    },
-    {
-      "t": "111",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "16:03:00",
-          "dep": "16:03:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "16:18:00",
-          "dep": "16:18:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "16:39:00",
-          "dep": "16:39:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "16:49:00",
-          "dep": "16:49:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "17:05:00",
-          "dep": "17:05:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "17:09:00",
-          "dep": "17:09:00"
-        }
-      ]
-    },
-    {
-      "t": "112",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 1,
-          "arr": "16:51:00",
-          "dep": "16:51:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 2,
-          "arr": "17:06:00",
-          "dep": "17:06:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 3,
-          "arr": "17:27:00",
-          "dep": "17:27:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 4,
-          "arr": "17:37:00",
-          "dep": "17:37:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 5,
-          "arr": "17:53:00",
-          "dep": "17:53:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 6,
-          "arr": "17:57:00",
-          "dep": "17:57:00"
-        }
-      ]
-    },
-    {
-      "t": "113",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "10:04:00",
-          "dep": "10:04:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "10:11:00",
-          "dep": "10:11:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "10:27:00",
-          "dep": "10:27:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "10:38:00",
-          "dep": "10:38:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "10:58:00",
-          "dep": "10:58:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "11:09:00",
-          "dep": "11:09:00"
-        }
-      ]
-    },
-    {
-      "t": "114",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "10:52:00",
-          "dep": "10:52:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "10:59:00",
-          "dep": "10:59:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "11:15:00",
-          "dep": "11:15:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "11:26:00",
-          "dep": "11:26:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "11:46:00",
-          "dep": "11:46:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "11:57:00",
-          "dep": "11:57:00"
-        }
-      ]
-    },
-    {
-      "t": "115",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "11:40:00",
-          "dep": "11:40:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "11:47:00",
-          "dep": "11:47:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "12:03:00",
-          "dep": "12:03:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "12:14:00",
-          "dep": "12:14:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "12:34:00",
-          "dep": "12:34:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "12:45:00",
-          "dep": "12:45:00"
-        }
-      ]
-    },
-    {
-      "t": "116",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "12:28:00",
-          "dep": "12:28:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "12:35:00",
-          "dep": "12:35:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "12:51:00",
-          "dep": "12:51:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "13:02:00",
-          "dep": "13:02:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "13:22:00",
-          "dep": "13:22:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "13:33:00",
-          "dep": "13:33:00"
-        }
-      ]
-    },
-    {
-      "t": "117",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "13:16:00",
-          "dep": "13:16:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "13:23:00",
-          "dep": "13:23:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "13:39:00",
-          "dep": "13:39:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "13:50:00",
-          "dep": "13:50:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "14:10:00",
-          "dep": "14:10:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "14:21:00",
-          "dep": "14:21:00"
-        }
-      ]
-    },
-    {
-      "t": "118",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "14:04:00",
-          "dep": "14:04:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "14:11:00",
-          "dep": "14:11:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "14:27:00",
-          "dep": "14:27:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "14:38:00",
-          "dep": "14:38:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "14:58:00",
-          "dep": "14:58:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "15:09:00",
-          "dep": "15:09:00"
-        }
-      ]
-    },
-    {
-      "t": "119",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "14:52:00",
-          "dep": "14:52:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "14:59:00",
-          "dep": "14:59:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "15:15:00",
-          "dep": "15:15:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "15:26:00",
-          "dep": "15:26:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "15:46:00",
-          "dep": "15:46:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "15:57:00",
-          "dep": "15:57:00"
-        }
-      ]
-    },
-    {
-      "t": "120",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "15:40:00",
-          "dep": "15:40:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "15:47:00",
-          "dep": "15:47:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "16:03:00",
-          "dep": "16:03:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "16:14:00",
-          "dep": "16:14:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "16:34:00",
-          "dep": "16:34:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "16:45:00",
-          "dep": "16:45:00"
-        }
-      ]
-    },
-    {
-      "t": "121",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "16:28:00",
-          "dep": "16:28:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "16:35:00",
-          "dep": "16:35:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "16:51:00",
-          "dep": "16:51:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "17:02:00",
-          "dep": "17:02:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "17:22:00",
-          "dep": "17:22:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "17:33:00",
-          "dep": "17:33:00"
-        }
-      ]
-    },
-    {
-      "t": "122",
-      "s": "2",
-      "r": "SG",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "17:16:00",
-          "dep": "17:16:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 2,
-          "arr": "17:23:00",
-          "dep": "17:23:00"
-        },
-        {
-          "id": "bay-ridge",
-          "sequence": 3,
-          "arr": "17:39:00",
-          "dep": "17:39:00"
-        },
-        {
-          "id": "st-george",
-          "sequence": 4,
-          "arr": "17:50:00",
-          "dep": "17:50:00"
-        },
-        {
-          "id": "battery-park-city-vesey-st",
-          "sequence": 5,
-          "arr": "18:10:00",
-          "dep": "18:10:00"
-        },
-        {
-          "id": "midtown-west-39th-st-pier-79",
-          "sequence": 6,
-          "arr": "18:21:00",
-          "dep": "18:21:00"
-        }
-      ]
-    },
-    {
-      "t": "123",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "10:23:00",
-          "dep": "10:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "10:35:00",
-          "dep": "10:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "10:51:00",
-          "dep": "10:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "10:58:00",
-          "dep": "10:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "11:05:00",
-          "dep": "11:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "11:13:00",
-          "dep": "11:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "11:17:00",
-          "dep": "11:17:00"
-        }
-      ]
-    },
-    {
-      "t": "124",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "11:23:00",
-          "dep": "11:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "11:35:00",
-          "dep": "11:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "11:51:00",
-          "dep": "11:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "11:58:00",
-          "dep": "11:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "12:05:00",
-          "dep": "12:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "12:13:00",
-          "dep": "12:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "12:17:00",
-          "dep": "12:17:00"
-        }
-      ]
-    },
-    {
-      "t": "125",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "12:23:00",
-          "dep": "12:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "12:35:00",
-          "dep": "12:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "12:51:00",
-          "dep": "12:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "12:58:00",
-          "dep": "12:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "13:05:00",
-          "dep": "13:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "13:13:00",
-          "dep": "13:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "13:17:00",
-          "dep": "13:17:00"
-        }
-      ]
-    },
-    {
-      "t": "126",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "13:23:00",
-          "dep": "13:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "13:35:00",
-          "dep": "13:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "13:51:00",
-          "dep": "13:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "13:58:00",
-          "dep": "13:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "14:05:00",
-          "dep": "14:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "14:13:00",
-          "dep": "14:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "14:17:00",
-          "dep": "14:17:00"
-        }
-      ]
-    },
-    {
-      "t": "127",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "14:23:00",
-          "dep": "14:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "14:35:00",
-          "dep": "14:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "14:51:00",
-          "dep": "14:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "14:58:00",
-          "dep": "14:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "15:05:00",
-          "dep": "15:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "15:13:00",
-          "dep": "15:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "15:17:00",
-          "dep": "15:17:00"
-        }
-      ]
-    },
-    {
-      "t": "128",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "15:23:00",
-          "dep": "15:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "15:35:00",
-          "dep": "15:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "15:51:00",
-          "dep": "15:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "15:58:00",
-          "dep": "15:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "16:05:00",
-          "dep": "16:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "16:13:00",
-          "dep": "16:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "16:17:00",
-          "dep": "16:17:00"
-        }
-      ]
-    },
-    {
-      "t": "129",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "16:23:00",
-          "dep": "16:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "16:35:00",
-          "dep": "16:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "16:51:00",
-          "dep": "16:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "16:58:00",
-          "dep": "16:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "17:05:00",
-          "dep": "17:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "17:13:00",
-          "dep": "17:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "17:17:00",
-          "dep": "17:17:00"
-        }
-      ]
-    },
-    {
-      "t": "130",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 1,
-          "arr": "17:23:00",
-          "dep": "17:23:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 2,
-          "arr": "17:35:00",
-          "dep": "17:35:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 3,
-          "arr": "17:51:00",
-          "dep": "17:51:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "17:58:00",
-          "dep": "17:58:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 5,
-          "arr": "18:05:00",
-          "dep": "18:05:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 6,
-          "arr": "18:13:00",
-          "dep": "18:13:00"
-        },
-        {
-          "id": "east-90th-st",
-          "sequence": 7,
-          "arr": "18:17:00",
-          "dep": "18:17:00"
-        }
-      ]
-    },
-    {
-      "t": "131",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "11:22:00",
-          "dep": "11:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "11:28:00",
-          "dep": "11:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "11:36:00",
-          "dep": "11:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "11:41:00",
-          "dep": "11:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "11:48:00",
-          "dep": "11:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "12:02:00",
-          "dep": "12:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "12:12:00",
-          "dep": "12:12:00"
-        }
-      ]
-    },
-    {
-      "t": "132",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "12:22:00",
-          "dep": "12:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "12:28:00",
-          "dep": "12:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "12:36:00",
-          "dep": "12:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "12:41:00",
-          "dep": "12:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "12:48:00",
-          "dep": "12:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "13:02:00",
-          "dep": "13:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "13:12:00",
-          "dep": "13:12:00"
-        }
-      ]
-    },
-    {
-      "t": "133",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "13:22:00",
-          "dep": "13:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "13:28:00",
-          "dep": "13:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "13:36:00",
-          "dep": "13:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "13:41:00",
-          "dep": "13:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "13:48:00",
-          "dep": "13:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "14:02:00",
-          "dep": "14:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "14:12:00",
-          "dep": "14:12:00"
-        }
-      ]
-    },
-    {
-      "t": "134",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "14:22:00",
-          "dep": "14:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "14:28:00",
-          "dep": "14:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "14:36:00",
-          "dep": "14:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "14:41:00",
-          "dep": "14:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "14:48:00",
-          "dep": "14:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "15:02:00",
-          "dep": "15:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "15:12:00",
-          "dep": "15:12:00"
-        }
-      ]
-    },
-    {
-      "t": "135",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "15:22:00",
-          "dep": "15:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "15:28:00",
-          "dep": "15:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "15:36:00",
-          "dep": "15:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "15:41:00",
-          "dep": "15:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "15:48:00",
-          "dep": "15:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "16:02:00",
-          "dep": "16:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "16:12:00",
-          "dep": "16:12:00"
-        }
-      ]
-    },
-    {
-      "t": "136",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "16:22:00",
-          "dep": "16:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "16:28:00",
-          "dep": "16:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "16:36:00",
-          "dep": "16:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "16:41:00",
-          "dep": "16:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "16:48:00",
-          "dep": "16:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "17:02:00",
-          "dep": "17:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "17:12:00",
-          "dep": "17:12:00"
-        }
-      ]
-    },
-    {
-      "t": "137",
-      "s": "2",
-      "r": "AS",
-      "stops": [
-        {
-          "id": "east-90th-st",
-          "sequence": 1,
-          "arr": "17:22:00",
-          "dep": "17:22:00"
-        },
-        {
-          "id": "astoria",
-          "sequence": 2,
-          "arr": "17:28:00",
-          "dep": "17:28:00"
-        },
-        {
-          "id": "roosevelt-island",
-          "sequence": 3,
-          "arr": "17:36:00",
-          "dep": "17:36:00"
-        },
-        {
-          "id": "long-island-city",
-          "sequence": 4,
-          "arr": "17:41:00",
-          "dep": "17:41:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 5,
-          "arr": "17:48:00",
-          "dep": "17:48:00"
-        },
-        {
-          "id": "brooklyn-navy-yard",
-          "sequence": 6,
-          "arr": "18:02:00",
-          "dep": "18:02:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 7,
-          "arr": "18:12:00",
-          "dep": "18:12:00"
-        }
-      ]
-    },
-    {
-      "t": "138",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "09:57:00",
-          "dep": "09:57:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "10:09:00",
-          "dep": "10:09:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "10:17:00",
-          "dep": "10:17:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "10:24:00",
-          "dep": "10:24:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "10:31:00",
-          "dep": "10:31:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "10:36:00",
-          "dep": "10:36:00"
-        }
-      ]
-    },
-    {
-      "t": "139",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "10:43:00",
-          "dep": "10:43:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "10:55:00",
-          "dep": "10:55:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "11:04:00",
-          "dep": "11:04:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "11:11:00",
-          "dep": "11:11:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "11:18:00",
-          "dep": "11:18:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "11:23:00",
-          "dep": "11:23:00"
-        }
-      ]
-    },
-    {
-      "t": "140",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "11:29:00",
-          "dep": "11:29:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "11:41:00",
-          "dep": "11:41:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "11:50:00",
-          "dep": "11:50:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "11:57:00",
-          "dep": "11:57:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "12:04:00",
-          "dep": "12:04:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "12:09:00",
-          "dep": "12:09:00"
-        }
-      ]
-    },
-    {
-      "t": "141",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "12:15:00",
-          "dep": "12:15:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "12:27:00",
-          "dep": "12:27:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "12:36:00",
-          "dep": "12:36:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "12:43:00",
-          "dep": "12:43:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "12:50:00",
-          "dep": "12:50:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "12:55:00",
-          "dep": "12:55:00"
-        }
-      ]
-    },
-    {
-      "t": "142",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "13:01:00",
-          "dep": "13:01:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "13:13:00",
-          "dep": "13:13:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "13:22:00",
-          "dep": "13:22:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "13:29:00",
-          "dep": "13:29:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "13:36:00",
-          "dep": "13:36:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "13:41:00",
-          "dep": "13:41:00"
-        }
-      ]
-    },
-    {
-      "t": "143",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "13:47:00",
-          "dep": "13:47:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "13:59:00",
-          "dep": "13:59:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "14:08:00",
-          "dep": "14:08:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "14:15:00",
-          "dep": "14:15:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "14:22:00",
-          "dep": "14:22:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "14:27:00",
-          "dep": "14:27:00"
-        }
-      ]
-    },
-    {
-      "t": "144",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "14:33:00",
-          "dep": "14:33:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "14:45:00",
-          "dep": "14:45:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "14:54:00",
-          "dep": "14:54:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "15:01:00",
-          "dep": "15:01:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "15:08:00",
-          "dep": "15:08:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "15:13:00",
-          "dep": "15:13:00"
-        }
-      ]
-    },
-    {
-      "t": "145",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "15:19:00",
-          "dep": "15:19:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "15:31:00",
-          "dep": "15:31:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "15:40:00",
-          "dep": "15:40:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "15:47:00",
-          "dep": "15:47:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "15:54:00",
-          "dep": "15:54:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "15:59:00",
-          "dep": "15:59:00"
-        }
-      ]
-    },
-    {
-      "t": "146",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "16:05:00",
-          "dep": "16:05:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "16:17:00",
-          "dep": "16:17:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "16:26:00",
-          "dep": "16:26:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "16:33:00",
-          "dep": "16:33:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "16:40:00",
-          "dep": "16:40:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "16:45:00",
-          "dep": "16:45:00"
-        }
-      ]
-    },
-    {
-      "t": "147",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "16:51:00",
-          "dep": "16:51:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "17:03:00",
-          "dep": "17:03:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "17:12:00",
-          "dep": "17:12:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "17:19:00",
-          "dep": "17:19:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "17:26:00",
-          "dep": "17:26:00"
-        },
-        {
-          "id": "governors-island",
-          "sequence": 6,
-          "arr": "17:31:00",
-          "dep": "17:31:00"
-        }
-      ]
-    },
-    {
-      "t": "148",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "east-34th-street",
-          "sequence": 1,
-          "arr": "17:37:00",
-          "dep": "17:37:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 2,
-          "arr": "17:49:00",
-          "dep": "17:49:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 3,
-          "arr": "17:58:00",
-          "dep": "17:58:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 4,
-          "arr": "18:05:00",
-          "dep": "18:05:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 5,
-          "arr": "18:09:00",
-          "dep": "18:09:00"
-        }
-      ]
-    },
-    {
-      "t": "149",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "10:41:00",
-          "dep": "10:41:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "10:49:00",
-          "dep": "10:49:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "10:56:00",
-          "dep": "10:56:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "11:04:00",
-          "dep": "11:04:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "11:11:00",
-          "dep": "11:11:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "11:20:00",
-          "dep": "11:20:00"
-        }
-      ]
-    },
-    {
-      "t": "150",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "11:28:00",
-          "dep": "11:28:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "11:36:00",
-          "dep": "11:36:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "11:43:00",
-          "dep": "11:43:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "11:51:00",
-          "dep": "11:51:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "11:58:00",
-          "dep": "11:58:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "12:07:00",
-          "dep": "12:07:00"
-        }
-      ]
-    },
-    {
-      "t": "151",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "12:14:00",
-          "dep": "12:14:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "12:22:00",
-          "dep": "12:22:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "12:29:00",
-          "dep": "12:29:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "12:37:00",
-          "dep": "12:37:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "12:44:00",
-          "dep": "12:44:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "12:53:00",
-          "dep": "12:53:00"
-        }
-      ]
-    },
-    {
-      "t": "152",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "13:00:00",
-          "dep": "13:00:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "13:08:00",
-          "dep": "13:08:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "13:15:00",
-          "dep": "13:15:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "13:23:00",
-          "dep": "13:23:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "13:30:00",
-          "dep": "13:30:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "13:39:00",
-          "dep": "13:39:00"
-        }
-      ]
-    },
-    {
-      "t": "153",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "13:46:00",
-          "dep": "13:46:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "13:54:00",
-          "dep": "13:54:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "14:01:00",
-          "dep": "14:01:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "14:09:00",
-          "dep": "14:09:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "14:16:00",
-          "dep": "14:16:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "14:25:00",
-          "dep": "14:25:00"
-        }
-      ]
-    },
-    {
-      "t": "154",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "14:32:00",
-          "dep": "14:32:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "14:40:00",
-          "dep": "14:40:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "14:47:00",
-          "dep": "14:47:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "14:55:00",
-          "dep": "14:55:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "15:02:00",
-          "dep": "15:02:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "15:11:00",
-          "dep": "15:11:00"
-        }
-      ]
-    },
-    {
-      "t": "155",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "15:18:00",
-          "dep": "15:18:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "15:26:00",
-          "dep": "15:26:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "15:33:00",
-          "dep": "15:33:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "15:41:00",
-          "dep": "15:41:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "15:48:00",
-          "dep": "15:48:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "15:57:00",
-          "dep": "15:57:00"
-        }
-      ]
-    },
-    {
-      "t": "156",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "16:04:00",
-          "dep": "16:04:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "16:12:00",
-          "dep": "16:12:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "16:19:00",
-          "dep": "16:19:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "16:27:00",
-          "dep": "16:27:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "16:34:00",
-          "dep": "16:34:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "16:43:00",
-          "dep": "16:43:00"
-        }
-      ]
-    },
-    {
-      "t": "157",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "16:50:00",
-          "dep": "16:50:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "16:58:00",
-          "dep": "16:58:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "17:05:00",
-          "dep": "17:05:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "17:13:00",
-          "dep": "17:13:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "17:20:00",
-          "dep": "17:20:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "17:29:00",
-          "dep": "17:29:00"
-        }
-      ]
-    },
-    {
-      "t": "158",
-      "s": "2",
-      "r": "SB",
-      "stops": [
-        {
-          "id": "governors-island",
-          "sequence": 1,
-          "arr": "17:36:00",
-          "dep": "17:36:00"
-        },
-        {
-          "id": "red-hook-atlantic-basin",
-          "sequence": 2,
-          "arr": "17:44:00",
-          "dep": "17:44:00"
-        },
-        {
-          "id": "atlantic-ave-bbp-pier-6",
-          "sequence": 3,
-          "arr": "17:51:00",
-          "dep": "17:51:00"
-        },
-        {
-          "id": "wall-st-pier-11",
-          "sequence": 4,
-          "arr": "17:59:00",
-          "dep": "17:59:00"
-        },
-        {
-          "id": "corlears-hook",
-          "sequence": 5,
-          "arr": "18:06:00",
-          "dep": "18:06:00"
-        },
-        {
-          "id": "east-34th-street",
-          "sequence": 6,
-          "arr": "18:15:00",
-          "dep": "18:15:00"
-        }
-      ]
-    },
     {
       "t": "159",
       "s": "1",
@@ -10712,7 +6555,7 @@
     },
     {
       "t": "269",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -10761,7 +6604,7 @@
     },
     {
       "t": "270",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -10810,7 +6653,7 @@
     },
     {
       "t": "271",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -10859,7 +6702,7 @@
     },
     {
       "t": "272",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -10908,7 +6751,7 @@
     },
     {
       "t": "273",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -10957,7 +6800,7 @@
     },
     {
       "t": "274",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11006,7 +6849,7 @@
     },
     {
       "t": "275",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11055,7 +6898,7 @@
     },
     {
       "t": "276",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11104,7 +6947,7 @@
     },
     {
       "t": "277",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11153,7 +6996,7 @@
     },
     {
       "t": "278",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11202,7 +7045,7 @@
     },
     {
       "t": "279",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11251,7 +7094,7 @@
     },
     {
       "t": "280",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11300,7 +7143,7 @@
     },
     {
       "t": "281",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11349,7 +7192,7 @@
     },
     {
       "t": "282",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11398,7 +7241,7 @@
     },
     {
       "t": "283",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11447,7 +7290,7 @@
     },
     {
       "t": "284",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11496,7 +7339,7 @@
     },
     {
       "t": "285",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11545,7 +7388,7 @@
     },
     {
       "t": "286",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11594,7 +7437,7 @@
     },
     {
       "t": "287",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11643,7 +7486,7 @@
     },
     {
       "t": "288",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11692,7 +7535,7 @@
     },
     {
       "t": "289",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11741,7 +7584,7 @@
     },
     {
       "t": "290",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11790,7 +7633,7 @@
     },
     {
       "t": "291",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -11839,7 +7682,7 @@
     },
     {
       "t": "292",
-      "s": "3",
+      "s": "2",
       "r": "ER",
       "stops": [
         {
@@ -13949,7 +9792,7 @@
     },
     {
       "t": "1587",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14004,7 +9847,7 @@
     },
     {
       "t": "1588",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14059,7 +9902,7 @@
     },
     {
       "t": "1589",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14114,7 +9957,7 @@
     },
     {
       "t": "1590",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14169,7 +10012,7 @@
     },
     {
       "t": "1591",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14224,7 +10067,7 @@
     },
     {
       "t": "1592",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14279,7 +10122,7 @@
     },
     {
       "t": "1596",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14334,7 +10177,7 @@
     },
     {
       "t": "1597",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14389,7 +10232,7 @@
     },
     {
       "t": "1598",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14444,7 +10287,7 @@
     },
     {
       "t": "1599",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14499,7 +10342,7 @@
     },
     {
       "t": "1600",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14524,7 +10367,7 @@
     },
     {
       "t": "1601",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14579,7 +10422,7 @@
     },
     {
       "t": "1615",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14634,7 +10477,7 @@
     },
     {
       "t": "1629",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14689,7 +10532,7 @@
     },
     {
       "t": "1630",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14744,7 +10587,7 @@
     },
     {
       "t": "1631",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14799,7 +10642,7 @@
     },
     {
       "t": "1632",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14854,7 +10697,7 @@
     },
     {
       "t": "1633",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14909,7 +10752,7 @@
     },
     {
       "t": "1634",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -14964,7 +10807,7 @@
     },
     {
       "t": "1635",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -15019,7 +10862,7 @@
     },
     {
       "t": "2133",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -15074,7 +10917,7 @@
     },
     {
       "t": "2134",
-      "s": "3",
+      "s": "2",
       "r": "RS",
       "stops": [
         {
@@ -16936,7 +12779,7 @@
     },
     {
       "t": "2368",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -16979,7 +12822,7 @@
     },
     {
       "t": "2369",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17022,7 +12865,7 @@
     },
     {
       "t": "2370",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17065,7 +12908,7 @@
     },
     {
       "t": "2371",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17108,7 +12951,7 @@
     },
     {
       "t": "2372",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17151,7 +12994,7 @@
     },
     {
       "t": "2373",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17194,7 +13037,7 @@
     },
     {
       "t": "2374",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17237,7 +13080,7 @@
     },
     {
       "t": "2375",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17280,7 +13123,7 @@
     },
     {
       "t": "2376",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17323,7 +13166,7 @@
     },
     {
       "t": "2377",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17366,7 +13209,7 @@
     },
     {
       "t": "2378",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17409,7 +13252,7 @@
     },
     {
       "t": "2379",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17452,7 +13295,7 @@
     },
     {
       "t": "2380",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17495,7 +13338,7 @@
     },
     {
       "t": "2381",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17538,7 +13381,7 @@
     },
     {
       "t": "2382",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17581,7 +13424,7 @@
     },
     {
       "t": "2383",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17624,7 +13467,7 @@
     },
     {
       "t": "2384",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17667,7 +13510,7 @@
     },
     {
       "t": "2415",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17710,7 +13553,7 @@
     },
     {
       "t": "2416",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17753,7 +13596,7 @@
     },
     {
       "t": "2417",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17796,7 +13639,7 @@
     },
     {
       "t": "2418",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17839,7 +13682,7 @@
     },
     {
       "t": "2419",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17882,7 +13725,7 @@
     },
     {
       "t": "2420",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17925,7 +13768,7 @@
     },
     {
       "t": "2421",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -17968,7 +13811,7 @@
     },
     {
       "t": "2422",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -18011,7 +13854,7 @@
     },
     {
       "t": "2423",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -18054,7 +13897,7 @@
     },
     {
       "t": "2424",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -18097,7 +13940,7 @@
     },
     {
       "t": "2425",
-      "s": "3",
+      "s": "2",
       "r": "SG",
       "stops": [
         {
@@ -20051,7 +15894,7 @@
     },
     {
       "t": "2465",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20100,7 +15943,7 @@
     },
     {
       "t": "2466",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20149,7 +15992,7 @@
     },
     {
       "t": "2467",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20198,7 +16041,7 @@
     },
     {
       "t": "2468",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20247,7 +16090,7 @@
     },
     {
       "t": "2469",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20296,7 +16139,7 @@
     },
     {
       "t": "2470",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20345,7 +16188,7 @@
     },
     {
       "t": "2471",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20394,7 +16237,7 @@
     },
     {
       "t": "2472",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20443,7 +16286,7 @@
     },
     {
       "t": "2473",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20492,7 +16335,7 @@
     },
     {
       "t": "2474",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20541,7 +16384,7 @@
     },
     {
       "t": "2475",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20590,7 +16433,7 @@
     },
     {
       "t": "2476",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20639,7 +16482,7 @@
     },
     {
       "t": "2477",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20688,7 +16531,7 @@
     },
     {
       "t": "2478",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20737,7 +16580,7 @@
     },
     {
       "t": "2479",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20786,7 +16629,7 @@
     },
     {
       "t": "2480",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20835,7 +16678,7 @@
     },
     {
       "t": "2481",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20884,7 +16727,7 @@
     },
     {
       "t": "2482",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20933,7 +16776,7 @@
     },
     {
       "t": "2483",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -20982,7 +16825,7 @@
     },
     {
       "t": "2484",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -21031,7 +16874,7 @@
     },
     {
       "t": "2485",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -21080,7 +16923,7 @@
     },
     {
       "t": "2486",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -21129,7 +16972,7 @@
     },
     {
       "t": "2487",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -21178,7 +17021,7 @@
     },
     {
       "t": "2488",
-      "s": "3",
+      "s": "2",
       "r": "AS",
       "stops": [
         {
@@ -22789,7 +18632,7 @@
     },
     {
       "t": "2527",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -22832,7 +18675,7 @@
     },
     {
       "t": "2528",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -22875,7 +18718,7 @@
     },
     {
       "t": "2529",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -22918,7 +18761,7 @@
     },
     {
       "t": "2530",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -22961,7 +18804,7 @@
     },
     {
       "t": "2531",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23004,7 +18847,7 @@
     },
     {
       "t": "2532",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23047,7 +18890,7 @@
     },
     {
       "t": "2533",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23090,7 +18933,7 @@
     },
     {
       "t": "2534",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23133,7 +18976,7 @@
     },
     {
       "t": "2535",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23176,7 +19019,7 @@
     },
     {
       "t": "2536",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23219,7 +19062,7 @@
     },
     {
       "t": "2537",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23256,7 +19099,7 @@
     },
     {
       "t": "2538",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23293,7 +19136,7 @@
     },
     {
       "t": "2539",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23330,7 +19173,7 @@
     },
     {
       "t": "2540",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23367,7 +19210,7 @@
     },
     {
       "t": "2541",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23404,7 +19247,7 @@
     },
     {
       "t": "2542",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23447,7 +19290,7 @@
     },
     {
       "t": "2543",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23490,7 +19333,7 @@
     },
     {
       "t": "2544",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23533,7 +19376,7 @@
     },
     {
       "t": "2545",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23576,7 +19419,7 @@
     },
     {
       "t": "2546",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23619,7 +19462,7 @@
     },
     {
       "t": "2547",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23662,7 +19505,7 @@
     },
     {
       "t": "2548",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23705,7 +19548,7 @@
     },
     {
       "t": "2549",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23748,7 +19591,7 @@
     },
     {
       "t": "2550",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23791,7 +19634,7 @@
     },
     {
       "t": "2551",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23834,7 +19677,7 @@
     },
     {
       "t": "2552",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23877,7 +19720,7 @@
     },
     {
       "t": "2553",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23914,7 +19757,7 @@
     },
     {
       "t": "2554",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23951,7 +19794,7 @@
     },
     {
       "t": "2555",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -23988,7 +19831,7 @@
     },
     {
       "t": "2556",
-      "s": "3",
+      "s": "2",
       "r": "SB",
       "stops": [
         {
@@ -26807,7 +22650,7 @@
     },
     {
       "t": "2610",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26826,7 +22669,7 @@
     },
     {
       "t": "2611",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26845,7 +22688,7 @@
     },
     {
       "t": "2612",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26864,7 +22707,7 @@
     },
     {
       "t": "2613",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26883,7 +22726,7 @@
     },
     {
       "t": "2614",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26902,7 +22745,7 @@
     },
     {
       "t": "2615",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26921,7 +22764,7 @@
     },
     {
       "t": "2616",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26940,7 +22783,7 @@
     },
     {
       "t": "2617",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26959,7 +22802,7 @@
     },
     {
       "t": "2618",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26978,7 +22821,7 @@
     },
     {
       "t": "2619",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -26997,7 +22840,7 @@
     },
     {
       "t": "2620",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27016,7 +22859,7 @@
     },
     {
       "t": "2621",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27035,7 +22878,7 @@
     },
     {
       "t": "2622",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27054,7 +22897,7 @@
     },
     {
       "t": "2623",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27073,7 +22916,7 @@
     },
     {
       "t": "2624",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27092,7 +22935,7 @@
     },
     {
       "t": "2625",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27111,7 +22954,7 @@
     },
     {
       "t": "2626",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27130,7 +22973,7 @@
     },
     {
       "t": "2627",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27149,7 +22992,7 @@
     },
     {
       "t": "2628",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27168,7 +23011,7 @@
     },
     {
       "t": "2629",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27187,7 +23030,7 @@
     },
     {
       "t": "2630",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27206,7 +23049,7 @@
     },
     {
       "t": "2631",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27225,7 +23068,7 @@
     },
     {
       "t": "2632",
-      "s": "4",
+      "s": "3",
       "r": "SB",
       "stops": [
         {
@@ -27244,7 +23087,7 @@
     },
     {
       "t": "2633",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27263,7 +23106,7 @@
     },
     {
       "t": "2634",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27282,7 +23125,7 @@
     },
     {
       "t": "2635",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27301,7 +23144,7 @@
     },
     {
       "t": "2636",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27320,7 +23163,7 @@
     },
     {
       "t": "2637",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27339,7 +23182,7 @@
     },
     {
       "t": "2638",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27358,7 +23201,7 @@
     },
     {
       "t": "2639",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27377,7 +23220,7 @@
     },
     {
       "t": "2640",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27396,7 +23239,7 @@
     },
     {
       "t": "2641",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27415,7 +23258,7 @@
     },
     {
       "t": "2642",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27434,7 +23277,7 @@
     },
     {
       "t": "2643",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27453,7 +23296,7 @@
     },
     {
       "t": "2644",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27472,7 +23315,7 @@
     },
     {
       "t": "2645",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27491,7 +23334,7 @@
     },
     {
       "t": "2646",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27510,7 +23353,7 @@
     },
     {
       "t": "2647",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27529,7 +23372,7 @@
     },
     {
       "t": "2648",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27548,7 +23391,7 @@
     },
     {
       "t": "2649",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27567,7 +23410,7 @@
     },
     {
       "t": "2651",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27586,7 +23429,7 @@
     },
     {
       "t": "2653",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27605,7 +23448,7 @@
     },
     {
       "t": "2654",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27624,7 +23467,7 @@
     },
     {
       "t": "2655",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27643,7 +23486,7 @@
     },
     {
       "t": "2657",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
@@ -27662,7 +23505,7 @@
     },
     {
       "t": "2659",
-      "s": "5",
+      "s": "4",
       "r": "SB",
       "stops": [
         {
